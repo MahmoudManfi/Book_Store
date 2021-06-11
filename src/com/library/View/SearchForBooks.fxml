@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1217.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.library.Controller.SearchForBooksController">
+    <children>
+        <VBox prefHeight="200.0" prefWidth="100.0">
+            <children>
+                <ImageView fitHeight="600.0" fitWidth="1333.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../img/background.jpg" />
+                    </image>
+                </ImageView>
+            </children>
+        </VBox>
+        <BorderPane prefHeight="600.0" prefWidth="1218.0">
+            <top>
+                <Label text="ADD A BOOK" textFill="WHITE" BorderPane.alignment="CENTER">
+                    <font>
+                        <Font name="Agency FB" size="70.0" />
+                    </font></Label>
+            </top>
+            <right>
+                <VBox prefHeight="200.0" prefWidth="100.0" spacing="25.0" BorderPane.alignment="CENTER">
+                    <children>
+                        <TextField />
+                        <TextField prefHeight="31.0" prefWidth="779.0" />
+                        <TextField minWidth="559.0" prefHeight="31.0" prefWidth="559.0" />
+                        <TextField prefHeight="31.0" prefWidth="779.0" />
+                        <TextField prefHeight="31.0" prefWidth="779.0" />
+                        <TextField prefHeight="31.0" prefWidth="779.0" />
+                        <TextField prefHeight="31.0" prefWidth="779.0" />
+                        <TextField prefHeight="31.0" prefWidth="779.0" />
+                    </children>
+                    <opaqueInsets>
+                        <Insets />
+                    </opaqueInsets>
+                    <padding>
+                        <Insets right="100.0" top="15.0" />
+                    </padding>
+                </VBox>
+            </right>
+            <left>
+                <VBox spacing="26.0" BorderPane.alignment="CENTER">
+                    <children>
+                        <Label text="ISBN Number:" textFill="WHITE">
+                            <font>
+                                <Font name="System Bold" size="20.0" />
+                            </font>
+                        </Label>
+                        <Label text="Title:" textFill="WHITE">
+                            <font>
+                                <Font name="System Bold" size="20.0" />
+                            </font>
+                        </Label>
+                        <Label text="Author:" textFill="WHITE">
+                            <font>
+                                <Font name="System Bold" size="20.0" />
+                            </font>
+                        </Label>
+                        <Label text="Publisher Name:" textFill="WHITE">
+                            <font>
+                                <Font name="System Bold" size="20.0" />
+                            </font>
+                        </Label>
+                        <Label text="Publication Year:" textFill="WHITE">
+                            <font>
+                                <Font name="System Bold" size="20.0" />
+                            </font>
+                        </Label>
+                        <Label text="Selling Price:" textFill="WHITE">
+                            <font>
+                                <Font name="System Bold" size="20.0" />
+                            </font>
+                        </Label>
+                        <Label text="Category:" textFill="WHITE">
+                            <font>
+                                <Font name="System Bold" size="20.0" />
+                            </font>
+                        </Label>
+                        <Label text="Number Of Copies:" textFill="WHITE">
+                            <font>
+                                <Font name="System Bold" size="20.0" />
+                            </font>
+                        </Label>
+                    </children>
+                    <padding>
+                        <Insets left="200.0" top="15.0" />
+                    </padding>
+                </VBox>
+            </left>
+            <bottom>
+                <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                    <children>
+                        <Button mnemonicParsing="false" text="Add">
+                            <font>
+                                <Font size="25.0" />
+                            </font>
+                            <HBox.margin>
+                                <Insets left="1038.0" top="10.0" />
+                            </HBox.margin>
+                        </Button>
+                    </children>
+                </HBox>
+            </bottom>
+        </BorderPane>
+    </children>
+</AnchorPane>
