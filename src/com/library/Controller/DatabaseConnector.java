@@ -4,7 +4,7 @@ import java.sql.*;
 
 public class DatabaseConnector {
     final String myUrl = "jdbc:mysql://localhost:3306/book_store";
-    final String password = "20101999"; // change to your passowrd
+    final String password = "counter.com"; // change to your passowrd
     private static DatabaseConnector databaseConnector;
 
 

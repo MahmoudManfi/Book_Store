@@ -12,11 +12,12 @@ public class Main extends Application{
     @Override
     public void start(Stage primaryStage) throws Exception {
 //        Parent root = FXMLLoader.load(getClass().getResource("../View/Login.fxml"));
-        Parent root = FXMLLoader.load(getClass().getResource("../View/WelcomeAdmin.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("../View/SearchForBooks.fxml"));
         primaryStage.setTitle("BOOK STORE");
         primaryStage.setScene(new Scene(root, 1206, 588));
         primaryStage.setResizable(false);
         primaryStage.show();
+
     }
 
     public static void main(String[] args) { launch(args); }
