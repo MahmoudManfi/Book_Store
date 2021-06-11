@@ -1,20 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
-<?import javafx.scene.text.*?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1217.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.library.Controller.LoginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1217.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.library.Controller.ClientHomeController">
    <children>
        <VBox prefHeight="200.0" prefWidth="100.0">
           <children>
@@ -38,17 +30,17 @@
                <children>
                   <HBox prefHeight="100.0" prefWidth="200.0" spacing="50.0">
                      <children>
-                        <Button mnemonicParsing="false" text="Add A Book">
+                        <Button fx:id="addABookButton" mnemonicParsing="false" onAction="#addABookClicked" text="Add A Book">
                            <font>
                               <Font size="30.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" text="Search For Books">
+                        <Button fx:id="searchForBookButton" mnemonicParsing="false" onAction="#searchForBookClicked" text="Search For Books">
                            <font>
                               <Font size="30.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" text="Modify A Book">
+                        <Button fx:id="modifyABookButton" mnemonicParsing="false" onAction="#modifyABookClicked" text="Modify A Book">
                            <font>
                               <Font size="30.0" />
                            </font>
@@ -57,12 +49,12 @@
                   </HBox>
                   <HBox layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" spacing="50.0">
                      <children>
-                        <Button mnemonicParsing="false" text="Place Orders">
+                        <Button fx:id="placeOrdersButton" mnemonicParsing="false" onAction="#placeOrdersClicked" text="Place Orders">
                            <font>
                               <Font size="30.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" text="Confirm Orders">
+                        <Button fx:id="confirmOrdersButton" mnemonicParsing="false" onAction="#confirmOrdersClicked" text="Confirm Orders">
                            <font>
                               <Font size="30.0" />
                            </font>
@@ -74,7 +66,7 @@
                   </HBox>
                   <HBox layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" spacing="50.0">
                      <children>
-                        <Button mnemonicParsing="false" text="Log Out">
+                        <Button fx:id="logOutButton" mnemonicParsing="false" onAction="#logOutButtonClicked" text="Log Out">
                            <font>
                               <Font size="30.0" />
                            </font>

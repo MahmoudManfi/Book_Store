@@ -1,10 +1,10 @@
 package com.library.Controller;
 
 import java.sql.*;
+import java.util.Scanner;
 
 public class DatabaseConnector {
     final String myUrl = "jdbc:mysql://localhost:3306/book_store";
-    final String password = "20101999"; // change to your passowrd
     private static DatabaseConnector databaseConnector;
 
 
@@ -18,6 +18,10 @@ public class DatabaseConnector {
         try {
             Connection conn;
             Statement st;
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Enter root Connection Password: ");
+            // change to your passowrd
+            String password = scanner.next();
             conn = DriverManager.getConnection(myUrl, "root", password);
             st = conn.createStatement();
             ResultSet rs = st.executeQuery(query);

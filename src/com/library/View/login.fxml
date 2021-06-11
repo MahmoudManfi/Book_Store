@@ -1,53 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.Font?>
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0"
-            prefWidth="1217.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.library.Controller.LoginController">
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1217.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.library.Controller.LoginController">
     <VBox prefHeight="200.0" prefWidth="100.0">
         <ImageView fitHeight="600.0" fitWidth="1333.0" pickOnBounds="true" preserveRatio="true">
-            <Image url="@../img/background.jpg"/>
+            <Image url="@../img/background.jpg" />
         </ImageView>
     </VBox>
     <BorderPane prefHeight="600.0" prefWidth="1218.0">
         <top>
             <Label text="WELCOME TO BOOK STORE" textFill="WHITE" BorderPane.alignment="CENTER">
                 <font>
-                    <Font name="Agency FB" size="70.0"/>
+                    <Font name="Agency FB" size="70.0" />
                 </font>
             </Label>
         </top>
         <right>
-            <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER"/>
+            <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
         </right>
         <left>
-            <Region prefHeight="496.0" prefWidth="329.0" BorderPane.alignment="CENTER"/>
+            <Region prefHeight="496.0" prefWidth="329.0" BorderPane.alignment="CENTER" />
         </left>
         <center>
             <VBox prefHeight="200.0" prefWidth="100.0" spacing="40.0" BorderPane.alignment="CENTER">
                 <padding>
-                    <Insets top="80.0"/>
+                    <Insets top="80.0" />
                 </padding>
-                <TextField maxWidth="570.0" prefHeight="60.0" prefWidth="570.0" promptText="username">
+                <TextField fx:id="usernameTextField" maxWidth="570.0" prefHeight="60.0" prefWidth="570.0" promptText="username">
                     <font>
-                        <Font size="30.0"/>
+                        <Font size="30.0" />
                     </font>
                 </TextField>
-                <TextField maxWidth="570.0" prefHeight="60.0" promptText="password">
+                <TextField fx:id="passwordTextField" maxWidth="570.0" prefHeight="60.0" promptText="password">
                     <font>
-                        <Font size="30.0"/>
+                        <Font size="30.0" />
                     </font>
                 </TextField>
-                <Button mnemonicParsing="false" text="Sign in">
+                <Button fx:id="signInButton" mnemonicParsing="false" onAction="#signInButtonClicked" text="Sign in">
                     <font>
-                        <Font size="30.0"/>
+                        <Font size="30.0" />
                     </font>
                 </Button>
             </VBox>
