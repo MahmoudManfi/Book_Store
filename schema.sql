@@ -22,19 +22,16 @@ CREATE TABLE IF NOT EXISTS book_store.book (
 	author_name VARCHAR(100) NOT NULL,
 	publisher_name VARCHAR(100) NOT NULL,
 	publication_year year NOT NULL,
-	selling_price INT NOT NULL,
+	price INT NOT NULL,
 	category VARCHAR(100) NOT NULL,
 	number_copies INT NOT NULL,
 	threshold INT NOT NULL,
-    
+
 	PRIMARY KEY (ISBN_number),
-	CONSTRAINT publisher_name
     FOREIGN KEY (publisher_name)
     REFERENCES book_store.publisher (name)
     ON DELETE NO ACTION
     ON UPDATE CASCADE,
-    
-    CONSTRAINT author_name
     FOREIGN KEY (author_name)
     REFERENCES book_store.author (name)
     ON DELETE CASCADE
@@ -45,21 +42,52 @@ CREATE TABLE IF NOT EXISTS book_store.book_order (
 	number INT NOT NULL,
     ISBN_number VARCHAR(100) NOT NULL,
 	number_copies INT NOT NULL,
-    date DATE NOT NULL,
-    
+
 	PRIMARY KEY (number),
-	CONSTRAINT ISBN_number
     FOREIGN KEY (ISBN_number)
     REFERENCES book_store.book (ISBN_number)
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE CASCADE
 );
+
+DELIMITER $$
+
+CREATE TRIGGER not_negative
+BEFORE UPDATE ON book_store.book
+FOR EACH ROW
+BEGIN
+	IF NEW.number_copies < 0 THEN
+		SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'The number of copies mustn\'t be negative',
+        MYSQL_ERRNO = 1001;
+	END IF;
+END $$
+
+DELIMITER $$
+
+CREATE TRIGGER place_order
+AFTER UPDATE ON book_store.book
+FOR EACH ROW
+BEGIN
+	IF NEW.number_copies < OLD.threshold THEN
+		SIGNAL SQLSTATE '01000'
+        SET MESSAGE_TEXT = 'Number of copies is less than the threshold',
+        MYSQL_ERRNO = 1000;
+	END IF;
+END $$
+
+DELIMITER ;
+
+CREATE TRIGGER confirm_order
+BEFORE DELETE ON book_store.book_order
+FOR EACH ROW
+SET @book_store.number_copies = @book_store.number_copies + OLD.number_copies;
 
 CREATE TABLE IF NOT EXISTS book_store.user(
 	user_name VARCHAR(100) NOT NULL,
     password VARCHAR(100) NOT NULL,
-    last_name VARCHAR(100) NOT NULL,
-    first_name VARCHAR(100) NOT NULL,
+    last_name VARCHAR(50) NOT NULL,
+    first_name VARCHAR(50) NOT NULL,
     email VARCHAR(100) NOT NULL,
     phone_number VARCHAR(50) NOT NULL,
     shipping_address VARCHAR(100) NOT NULL,
@@ -67,13 +95,12 @@ CREATE TABLE IF NOT EXISTS book_store.user(
     PRIMARY KEY (user_name)
 );
 
-CREATE TABLE IF NOT EXISTS book_store.cart(
+CREATE TABLE IF NOT EXISTS book_store.cart_item(
 	number INT NOT NULL,
     ISBN_number VARCHAR(100) NOT NULL,
     user_name VARCHAR(100) NOT NULL,
-    price INT NOT NULL,
     number_copies INT NOT NULL,
-    total_price INT,
+
     PRIMARY KEY (number),
     FOREIGN KEY (ISBN_number)
     REFERENCES book_store.book (ISBN_number)
@@ -81,14 +108,25 @@ CREATE TABLE IF NOT EXISTS book_store.cart(
     ON UPDATE CASCADE,
     FOREIGN KEY (user_name)
     REFERENCES book_store.user (user_name)
+    ON UPDATE CASCADE
+    ON DELETE CASCADE
 );
 
 Create table if not exists book_store.sold_book(
-	ISBN_number varchar(100) NOT NULL,
-    selling_date date,
-    sold_copies varchar(100),
+	number VARCHAR(100) NOT NULL,
+    ISBN_number VARCHAR(100),
+    user_name VARCHAR(100),
+    date DATE NOT NULL,
+    number_copies INT NOT NULL,
+    price INT NOT NULL,
+
+    PRIMARY KEY (number),
     FOREIGN KEY (ISBN_number)
     REFERENCES book_store.book (ISBN_number)
-    ON DELETE NO ACTION
+    ON DELETE SET NULL
+    ON UPDATE CASCADE,
+    FOREIGN KEY (user_name)
+    REFERENCES book_store.user (user_name)
+    ON DELETE SET NULL
     ON UPDATE CASCADE
 );
