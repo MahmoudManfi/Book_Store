@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1217.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.library.Controller.WelcomingPageController">
+    <children>
+        <VBox prefHeight="200.0" prefWidth="100.0">
+            <children>
+            <Pane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <Label prefHeight="37.0" prefWidth="20.0" text="Welcom " />
+                  <Label layoutX="131.0" layoutY="29.0" text="Hamza " />
+               </children>
+            </Pane>
+                <ImageView fitHeight="600.0" fitWidth="1250.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../img/background.jpg" />
+                    </image>
+                </ImageView>
+            </children>
+        </VBox>
+          <VBox layoutX="308.0" layoutY="84.0" prefHeight="416.0" prefWidth="938.0" spacing="20.0">
+              <children>
+            <HBox prefHeight="63.0" prefWidth="910.0">
+               <children>
+                        <Label text="Welcome !" textFill="WHITE">
+                            <font>
+                                <Font name="Agency FB" size="50.0" />
+                            </font>
+                        </Label>
+                  <Label fx:id="nameLabel" layoutX="10.0" layoutY="10.0" text="Hamza" textFill="WHITE">
+                     <font>
+                        <Font name="Agency FB" size="50.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <Label layoutX="10.0" layoutY="10.0" text="What do you want to do ? " textFill="WHITE">
+               <font>
+                  <Font name="Agency FB" size="50.0" />
+               </font>
+            </Label>
+            <Pane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                        <Button fx:id="addNewBookButton" layoutX="48.0" mnemonicParsing="false" onAction="#addNewBookHandler" prefHeight="65.0" prefWidth="321.0" style="-fx-background-image: url('../img/background2.jpg');" text="Add new Book">
+                            <font>
+                                <Font size="30.0" />
+                            </font>
+                        </Button>
+                        <Button fx:id="deleteBookButton" layoutX="48.0" layoutY="154.0" mnemonicParsing="false" onAction="#deleteBookHandler" prefHeight="65.0" prefWidth="322.0" style="-fx-background-image: url('../img/background2.jpg');" text="Delete book ">
+                            <font>
+                                <Font size="30.0" />
+                            </font>
+                        </Button>
+                        <Button fx:id="updateBookButton" layoutX="47.0" layoutY="77.0" mnemonicParsing="false" onAction="#updateExistingBookHandler" prefHeight="65.0" prefWidth="322.0" style="-fx-background-image: url('../img/background2.jpg');" text="Update Existing book">
+                            <font>
+                                <Font size="30.0" />
+                            </font>
+                        </Button>
+               </children>
+            </Pane>
+              </children>
+          </VBox>
+    </children>
+</AnchorPane>
