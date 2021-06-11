@@ -29,7 +29,7 @@
                </font></Label>
          </top>
          <center>
-            <VBox prefHeight="200.0" prefWidth="100.0" spacing="20.0" BorderPane.alignment="CENTER">
+            <VBox prefHeight="508.0" prefWidth="909.0" spacing="20.0" BorderPane.alignment="CENTER">
                <children>
                   <Label text="Sign in as:" textFill="WHITE">
                      <font>
@@ -46,14 +46,21 @@
                         <Font size="30.0" />
                      </font>
                   </Button>
+                  <Label text="New User? " textFill="WHITE">
+                     <font>
+                        <Font name="Agency FB" size="50.0" />
+                     </font>
+                  </Label>
+                  <Button mnemonicParsing="false" style="-fx-background-image: url('../img/background2.jpg');" text="Sign Up">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                  </Button>
                </children>
             </VBox>
          </center>
-         <right>
-            <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
-         </right>
          <left>
-            <Region prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+            <Region prefHeight="478.0" prefWidth="336.0" BorderPane.alignment="CENTER" />
          </left>
       </BorderPane>
    </children>
