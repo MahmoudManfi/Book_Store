@@ -1,67 +1,94 @@
-CREATE SCHEMA IF NOT EXISTS bookstore ;
-USE bookstore ;
+DROP SCHEMA book_store; 
 
-CREATE TABLE IF NOT EXISTS bookstore.PUBLISHER (
-  Name VARCHAR(100) NOT NULL,
-  Address VARCHAR(100) NOT NULL,
-  Phonenumber CHAR(50) NOT NULL,
-  PRIMARY KEY (Name));
 
-CREATE TABLE IF NOT EXISTS bookstore.BOOK (
-	ISBNnumber INT NOT NULL,
-	Title VARCHAR(100) NOT NULL,
-	Author VARCHAR(100) NOT NULL,
-	PublisherName VARCHAR(100) NOT NULL,
-	PublicationYear year NOT NULL,
-	SellingPrice INT NOT NULL,
-	Category VARCHAR(100) NOT NULL,
-	Copies INT NOT NULL,
+CREATE SCHEMA IF NOT EXISTS book_store;
+USE book_store;
+
+CREATE TABLE IF NOT EXISTS book_store.publisher (
+	name VARCHAR(100) NOT NULL,
+	address VARCHAR(100) NOT NULL,
+	phone_number VARCHAR(50) NOT NULL,
+	PRIMARY KEY (name)
+);
+
+CREATE TABLE IF NOT EXISTS book_store.author(
+	name VARCHAR(100) NOT NULL,
+    PRIMARY KEY(name)
+);
+
+CREATE TABLE IF NOT EXISTS book_store.book (
+	ISBN_number VARCHAR(100) NOT NULL,
+	title VARCHAR(100) NOT NULL,
+	author_name VARCHAR(100) NOT NULL,
+	publisher_name VARCHAR(100) NOT NULL,
+	publication_year year NOT NULL,
+	selling_price INT NOT NULL,
+	category VARCHAR(100) NOT NULL,
+	number_copies INT NOT NULL,
+	threshold INT NOT NULL,
     
-	threshold INT,
-	PRIMARY KEY (ISBNnumber),
+	PRIMARY KEY (ISBN_number),
 	CONSTRAINT publisher_name
-    FOREIGN KEY (PublisherName)
-    REFERENCES bookstore.PUBLISHER (Name)
+    FOREIGN KEY (publisher_name)
+    REFERENCES book_store.publisher (name)
     ON DELETE NO ACTION
-    ON UPDATE CASCADE);
+    ON UPDATE CASCADE,
+    
+    CONSTRAINT author_name
+    FOREIGN KEY (author_name)
+    REFERENCES book_store.author (name)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
+);
 
-CREATE TABLE IF NOT EXISTS bookstore.BookOrders (
-  ISBNnumber INT NOT NULL,
-  Copies INT NOT NULL,
-  PRIMARY KEY (ISBNnumber),
-  CONSTRAINT ISBN_number
-    FOREIGN KEY (ISBNnumber)
-    REFERENCES bookstore.BOOK (ISBNnumber)
+CREATE TABLE IF NOT EXISTS book_store.book_order (
+	number INT NOT NULL,
+    ISBN_number VARCHAR(100) NOT NULL,
+	number_copies INT NOT NULL,
+    date DATE NOT NULL,
+    
+	PRIMARY KEY (number),
+	CONSTRAINT ISBN_number
+    FOREIGN KEY (ISBN_number)
+    REFERENCES book_store.book (ISBN_number)
     ON DELETE NO ACTION
-    ON UPDATE CASCADE);
+    ON UPDATE CASCADE
+);
 
-Create table if not exists bookstore.users(
-	username varchar(100) not null,
-    password varchar(100) not null,
-    lastName varchar(100),
-    firstName varchar(100),
-    email varchar(100),
-    phoneNumber char(50),
-    shippingAddress varchar(100),
-    status varchar(100),
-    PRIMARY KEY (`username`)
-    );
+CREATE TABLE IF NOT EXISTS book_store.user(
+	user_name VARCHAR(100) NOT NULL,
+    password VARCHAR(100) NOT NULL,
+    last_name VARCHAR(100) NOT NULL,
+    first_name VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    phone_number VARCHAR(50) NOT NULL,
+    shipping_address VARCHAR(100) NOT NULL,
+    status VARCHAR(100) NOT NULL,
+    PRIMARY KEY (user_name)
+);
 
-Create table if not exists bookstore.cart(
-	ISBN INT not null,
-    price INT not null,
-    copies Int not null,
-    totalPrice Int,
-    FOREIGN KEY (ISBN)
-    REFERENCES bookstore.BOOK (ISBNnumber)
+CREATE TABLE IF NOT EXISTS book_store.cart(
+	number INT NOT NULL,
+    ISBN_number VARCHAR(100) NOT NULL,
+    user_name VARCHAR(100) NOT NULL,
+    price INT NOT NULL,
+    number_copies INT NOT NULL,
+    total_price INT,
+    PRIMARY KEY (number),
+    FOREIGN KEY (ISBN_number)
+    REFERENCES book_store.book (ISBN_number)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+    FOREIGN KEY (user_name)
+    REFERENCES book_store.user (user_name)
+);
+
+Create table if not exists book_store.sold_book(
+	ISBN_number varchar(100) NOT NULL,
+    selling_date date,
+    sold_copies varchar(100),
+    FOREIGN KEY (ISBN_number)
+    REFERENCES book_store.book (ISBN_number)
     ON DELETE NO ACTION
-    ON UPDATE CASCADE);
-
-Create table if not exists bookstore.soldBooks(
-	ISBN INT not null,
-    sellingDate date,
-    soldCopies varchar(100),
-    FOREIGN KEY (ISBN)
-    REFERENCES bookstore.BOOK (ISBNnumber)
-    ON DELETE NO ACTION
-    ON UPDATE CASCADE)
+    ON UPDATE CASCADE
+);
