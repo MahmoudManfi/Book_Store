@@ -11,10 +11,10 @@ CREATE TABLE IF NOT EXISTS book_store.publisher (
 	PRIMARY KEY (name)
 );
 
-CREATE TABLE IF NOT EXISTS book_store.author(
-	name VARCHAR(100) NOT NULL,
-    PRIMARY KEY(name)
-);
+-- CREATE TABLE IF NOT EXISTS book_store.author(
+-- 	name VARCHAR(100) NOT NULL,
+--     PRIMARY KEY(name)
+-- );
 
 CREATE TABLE IF NOT EXISTS book_store.book (
 	ISBN_number VARCHAR(100) NOT NULL,
@@ -31,10 +31,6 @@ CREATE TABLE IF NOT EXISTS book_store.book (
     FOREIGN KEY (publisher_name)
     REFERENCES book_store.publisher (name)
     ON DELETE NO ACTION
-    ON UPDATE CASCADE,
-    FOREIGN KEY (author_name)
-    REFERENCES book_store.author (name)
-    ON DELETE CASCADE
     ON UPDATE CASCADE
 );
 
@@ -130,3 +126,6 @@ Create table if not exists book_store.sold_book(
     ON DELETE SET NULL
     ON UPDATE CASCADE
 );
+-- insert into book(ISBN_number, title, author_name, publisher_name, publication_year, price, category, number_copies,
+--                  threshold)
+-- values ("12123", "Harry Potter", "J.K Rowling", "dummy publisher", 2002, 50, "Science", 100, 4);
