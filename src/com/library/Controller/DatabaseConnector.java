@@ -18,7 +18,7 @@ public class DatabaseConnector {
         try {
             Connection conn;
             Statement st;
-            conn = DriverManager.getConnection(myUrl, "root", "20101999");
+            conn = DriverManager.getConnection(myUrl, "root", password);
             st = conn.createStatement();
             ResultSet rs = st.executeQuery(query);
             // iterate through the java resultset
