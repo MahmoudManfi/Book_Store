@@ -27,7 +27,7 @@ public class ClientHomeController {
     public void searchForBookClicked(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("../View/SearchForBooks.fxml"));
         Stage window = (Stage) addABookButton.getScene().getWindow();
-        window.setScene(new Scene(root, 1206, 588));
+        window.setScene(new Scene(root, 1902, 652));
         window.setResizable(false);
     }
 
