@@ -1,4 +1,96 @@
 package com.library.Model;
 
-public interface User {
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+public class User implements KingSelect {
+
+    private String userName;
+    private String password;
+    private String firstName;
+    private String lastName;
+    private String email;
+    private String phoneNumber;
+    private String shippingAddress;
+    private String status;
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public void setShippingAddress(String shippingAddress) {
+        this.shippingAddress = shippingAddress;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public String getShippingAddress() {
+        return shippingAddress;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public boolean isManager() {
+        return status.compareTo("Manager") == 0;
+    }
+
+    @Override
+    public void build(ResultSet resultSet) throws SQLException {
+        setUserName(resultSet.getString(1));
+        setPassword(resultSet.getString(2));
+        setLastName(resultSet.getString(3));
+        setFirstName(resultSet.getString(4));
+        setEmail(resultSet.getString(5));
+        setPhoneNumber(resultSet.getString(6));
+        setShippingAddress(resultSet.getString(7));
+        setStatus(resultSet.getString(8));
+    }
 }
