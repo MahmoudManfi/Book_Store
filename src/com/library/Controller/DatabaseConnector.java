@@ -1,8 +1,8 @@
 package com.library.Controller;
 
-import com.library.Model.Book;
-import com.library.Model.FactorySelect;
-import com.library.Model.KingSelect;
+import com.library.Model.databaseTables.Book;
+import com.library.Model.databaseTables.FactoryTable;
+import com.library.Model.databaseTables.Tuple;
 
 import java.sql.*;
 import java.util.*;
@@ -31,18 +31,18 @@ public class DatabaseConnector {
         System.err.println(e.getMessage());
     }
 
-    public List<KingSelect> executeQuery(String query, String tableName) {
-        FactorySelect factorySelect = new FactorySelect();
-        List<KingSelect> result = new ArrayList<>();
+    public List<Tuple> executeQuery(String query, String tableName) {
+        FactoryTable factoryTable = new FactoryTable();
+        List<Tuple> result = new ArrayList<>();
         try {
             Connection connection = DriverManager.getConnection(myUrl, "root", password);
             try {
                 Statement statement = connection.createStatement();
                 ResultSet resultSet = statement.executeQuery(query);
                 while(resultSet.next()) {
-                    KingSelect kingSelect = factorySelect.getTable(tableName);
-                    kingSelect.build(resultSet);
-                    result.add(kingSelect);
+                    Tuple tuple = factoryTable.getTable(tableName);
+                    tuple.build(resultSet);
+                    result.add(tuple);
                 }
             }catch (Exception e) {
                 printException(e);

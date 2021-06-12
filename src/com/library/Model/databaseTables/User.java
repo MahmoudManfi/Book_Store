@@ -1,9 +1,9 @@
-package com.library.Model;
+package com.library.Model.databaseTables;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class User implements KingSelect {
+public class User implements Tuple {
 
     private String userName;
     private String password;

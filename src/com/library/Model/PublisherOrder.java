@@ -6,7 +6,7 @@ import javafx.scene.control.ButtonType;
 
 import java.util.Optional;
 
-public class Publisher_order {
+public class PublisherOrder {
 
     public void takeAction(String ISBN_number, String publisherName, String bookTitle, int numberCopies) {
         insertOrder(ISBN_number, numberCopies);

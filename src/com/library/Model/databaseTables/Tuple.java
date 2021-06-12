@@ -1,9 +1,9 @@
-package com.library.Model;
+package com.library.Model.databaseTables;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public interface KingSelect {
+public interface Tuple {
 
     public void build(ResultSet resultSet) throws SQLException;
 
