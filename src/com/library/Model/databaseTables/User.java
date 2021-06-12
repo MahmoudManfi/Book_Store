@@ -2,6 +2,7 @@ package com.library.Model.databaseTables;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 public class User implements Tuple {
 
@@ -14,6 +15,15 @@ public class User implements Tuple {
     private String shippingAddress;
     private String status;
 
+    public List<CartItem> getCartItems() {
+        return cartItems;
+    }
+
+    public void addItem(CartItem cartItem) {
+        this.cartItems.add(cartItem);
+    }
+
+    List<CartItem> cartItems;
     public void setUserName(String userName) {
         this.userName = userName;
     }

@@ -1,8 +1,10 @@
 package com.library.Controller;
 
+import com.library.Model.databaseTables.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -10,6 +12,8 @@ import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 public class WelcomingPageController {
     @FXML
@@ -26,6 +30,7 @@ public class WelcomingPageController {
     private Button addNewBookButton;
     @FXML
     private Button updateBookButton;
+    private User user;
 
     @FXML
     public void addNewBookHandler(ActionEvent e) {
@@ -46,7 +51,7 @@ public class WelcomingPageController {
     public void updateExistingBookHandler(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("../View/SearchModifyExistingBooks.fxml"));
         Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        window.setScene(new Scene(root, 1902, 652));
+        window.setScene(new Scene(root, 1902, 700));
         window.setResizable(false);
     }
 
@@ -63,7 +68,7 @@ public class WelcomingPageController {
     public void shoppingCartButtonClicked(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("../View/Cart.fxml"));
         Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        window.setScene(new Scene(root, 1904, 622));
+        window.setScene(new Scene(root, 1446, 609));
         window.setResizable(false);
     }
 
@@ -79,4 +84,5 @@ public class WelcomingPageController {
         window.setScene(new Scene(root, 1206, 588));
         window.setResizable(false);
     }
+
 }

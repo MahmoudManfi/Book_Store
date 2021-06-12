@@ -15,7 +15,7 @@ public class EditPersonalInformationController {
     public Button saveButton;
 
     public void goBackButtonClicked(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("../View/ClientHome.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("../View/WelcomeAdmin.fxml"));
         Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         window.setScene(new Scene(root, 1206, 588));
         window.setResizable(false);

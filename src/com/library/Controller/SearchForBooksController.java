@@ -20,6 +20,8 @@ import java.util.ResourceBundle;
 
 public class SearchForBooksController implements Initializable {
     public TableView searchTableView;
+    TableView.TableViewSelectionModel<Book> selectionModel;
+
     public TextField priceTextField;
     public TextField numOfCopiesTextField;
     public TextField thresholdTextField;
@@ -30,12 +32,36 @@ public class SearchForBooksController implements Initializable {
     public TextField isbnNumberTextField;
     public TextField titleTextField;
     @FXML
-    public ComboBox categoryComboBox;
+    public ComboBox<String> categoryComboBox;
+    @FXML
     public TextField authorTextField;
-    public TextField publisherTextField;
+    @FXML
+    public TextField publisherNameTextField;
+    @FXML
     public Button goBackButton;
+    @FXML
     public Button searchButton;
+    @FXML
     public TextField publicationYearTextField;
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        ObservableList<TableColumn<Book, String>> tableColumns= searchTableView.getColumns();
+        tableColumns.get(0).setCellValueFactory(new PropertyValueFactory<>("isbn"));
+        tableColumns.get(1).setCellValueFactory(new PropertyValueFactory<>("title"));
+        tableColumns.get(2).setCellValueFactory(new PropertyValueFactory<>("authorName"));
+        tableColumns.get(3).setCellValueFactory(new PropertyValueFactory<>("publisherName"));
+        tableColumns.get(4).setCellValueFactory(new PropertyValueFactory<>("publicationYear"));
+        tableColumns.get(5).setCellValueFactory(new PropertyValueFactory<>("price"));
+        tableColumns.get(6).setCellValueFactory(new PropertyValueFactory<>("category"));
+        tableColumns.get(7).setCellValueFactory(new PropertyValueFactory<>("numberCopies"));
+        tableColumns.get(8).setCellValueFactory(new PropertyValueFactory<>("threshold"));
+
+        categoryComboBox.getItems().addAll(options);
+        addToCartButton.setDisable(true);
+        //modifyButton.setDisable(true);
+    }
+
     public void goBackButtonClicked(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("../View/ClientHome.fxml"));
         Stage window = (Stage) goBackButton.getScene().getWindow();
@@ -71,7 +97,7 @@ public class SearchForBooksController implements Initializable {
         book.setIsbn(isbnNumberTextField.getText().trim());
         book.setTitle(titleTextField.getText().trim());
         book.setAuthorName(authorTextField.getText().trim());
-        book.setPublisherName(publisherTextField.getText().trim());
+        book.setPublisherName(publisherNameTextField.getText().trim());
         book.setPublicationYear(publicationYearTextField.getText().trim());
         book.setCategory((String) categoryComboBox.getValue());
         return book;
@@ -80,28 +106,38 @@ public class SearchForBooksController implements Initializable {
     public void categoryComboBoxClicked(ActionEvent actionEvent) {
     }
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        ObservableList<TableColumn<Book, String>> tableColumns= searchTableView.getColumns();
-        tableColumns.get(0).setCellValueFactory(new PropertyValueFactory<>("isbn"));
-        tableColumns.get(1).setCellValueFactory(new PropertyValueFactory<>("title"));
-        tableColumns.get(2).setCellValueFactory(new PropertyValueFactory<>("authorName"));
-        tableColumns.get(3).setCellValueFactory(new PropertyValueFactory<>("publisherName"));
-        tableColumns.get(4).setCellValueFactory(new PropertyValueFactory<>("publicationYear"));
-        tableColumns.get(5).setCellValueFactory(new PropertyValueFactory<>("price"));
-        tableColumns.get(6).setCellValueFactory(new PropertyValueFactory<>("category"));
-        tableColumns.get(7).setCellValueFactory(new PropertyValueFactory<>("numberCopies"));
-        tableColumns.get(8).setCellValueFactory(new PropertyValueFactory<>("threshold"));
-
-        categoryComboBox.getItems().addAll(options);
-    }
 
     public void addToCartButtonHandler(ActionEvent actionEvent) {
     }
 
     public void modifyButtonHandler(ActionEvent actionEvent) {
+        System.out.println("Updating existing book in progress....");
+        Book newBook;
+        newBook = generateFromLabels();
+        ObservableList<Book> selectedItems = selectionModel.getSelectedItems();
+        selectedItems = (ObservableList<Book>) newBook;
+        try{
+            DatabaseConnector.getInstance().updateBook(newBook);
+        } catch (RuntimeException exception) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Wrong Input");
+            alert.setContentText("You can't insert strings in integer places ");
+            alert.showAndWait();
+        }
     }
 
-    public void searchButtonHandler(ActionEvent actionEvent) {
+
+    Book generateFromLabels() {
+        Book book = new Book();
+        book.setIsbn(isbnNumberTextField.getText().trim());
+        book.setTitle(titleTextField.getText().trim());
+        book.setAuthorName(authorTextField.getText().trim());
+        book.setPublicationYear(publicationYearTextField.getText().trim());
+        book.setCategory((String) categoryComboBox.getValue());
+        book.setNumberCopies(Integer.valueOf(numOfCopiesTextField.getText().trim()));
+        book.setPublisherName(publisherNameTextField.getText().trim());
+        book.setPrice(Integer.valueOf(priceTextField.getText().trim()));
+        book.setThreshold(Integer.valueOf(thresholdTextField.getText().trim()));
+        return book;
     }
 }
