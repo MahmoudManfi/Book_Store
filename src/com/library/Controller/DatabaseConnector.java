@@ -1,7 +1,8 @@
 package com.library.Controller;
 
-import com.library.Model.Book;
-import com.library.Model.Info;
+import com.library.Model.databaseTables.Book;
+import com.library.Model.databaseTables.FactoryTable;
+import com.library.Model.databaseTables.Tuple;
 
 import java.sql.*;
 import java.util.*;
@@ -18,61 +19,67 @@ public class DatabaseConnector {
         sc.close();
     }
 
-    static DatabaseConnector getInstance() {
+    public static DatabaseConnector getInstance() {
         if (databaseConnector == null) {
             databaseConnector = new DatabaseConnector();
         }
         return databaseConnector;
     }
 
-    private void execute_select_query(String query) {
+    private void printException(Exception e) {
+        System.err.println("Got an exception! ");
+        System.err.println(e.getMessage());
+    }
+
+    public List<Tuple> executeQuery(String query, String tableName) {
+        FactoryTable factoryTable = new FactoryTable();
+        List<Tuple> result = new ArrayList<>();
         try {
-            Connection conn;
-            Statement st;
-            conn = DriverManager.getConnection(myUrl, "root", password);
-            st = conn.createStatement();
-            ResultSet rs = st.executeQuery(query);
-            // iterate through the java resultset
-//            while (rs.next()) {
-//                String isbn = rs.getString("ISBN_number");
-//                String title = rs.getString("title");
-//                String author_name = rs.getString("author_name");
-//
-//                // print the results
-//                System.out.format("%s, %s, %s\n", isbn, title, author_name);
-//            }
-            st.close();
+            Connection connection = DriverManager.getConnection(myUrl, "root", password);
+            try {
+                Statement statement = connection.createStatement();
+                ResultSet resultSet = statement.executeQuery(query);
+                while(resultSet.next()) {
+                    Tuple tuple = factoryTable.getTable(tableName);
+                    tuple.build(resultSet);
+                    result.add(tuple);
+                }
+            }catch (Exception e) {
+                printException(e);
+            }
+            connection.close();
         } catch (Exception e) {
-            System.err.println("Got an exception! ");
-            System.err.println(e.getMessage());
+            printException(e);
         }
+        return result;
     }
 
     // update or insert
-    private void execute_query(String query) {
+    public void executeUpdate(String query) {
         try {
-            Connection conn;
-            Statement st;
-            conn = DriverManager.getConnection(myUrl, "root", password);
-            st = conn.createStatement();
-            int ret = st.executeUpdate(query);
-            st.close();
-            System.out.println("Query done successfully !! ");
+            Connection connection = DriverManager.getConnection(myUrl, "root", password);
+            try {
+                Statement statement = connection.createStatement();
+                statement.executeUpdate(query);
+                System.out.println("Query done successfully !! ");
+            }catch (Exception e) {
+                printException(e);
+            }
+            connection.close();
         } catch (Exception e) {
-            System.err.println("Got an exception!");
-            System.err.println(e.getMessage());
+            printException(e);
         }
     }
 
 
     void addBook(Book book) {
         String query = generateAddQuery(book);
-        execute_query(query);
+        executeUpdate(query);
     }
 
     void updateBook(Book book) {
         String query = generateUpdateQuery(book);
-        execute_query(query);
+        executeUpdate(query);
     }
 
     List<Book> searchForBooks(Book book) {
@@ -153,7 +160,7 @@ public class DatabaseConnector {
             query = "update book set " + updateFields;
             query += " where ISBN_number = " + book.getIsbn() + ";";
         }
-        System.err.println("update Query: " + query);
+        System.err.println("update Query: \"" + query + "\";");
 
         return query;
     }

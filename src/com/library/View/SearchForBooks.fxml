@@ -113,7 +113,7 @@
                               <Font name="System Bold" size="20.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="publisherTextField" prefWidth="250.0" />
+                        <TextField fx:id="publisherNameTextField" prefWidth="250.0" />
                      </children>
                   </HBox>
                   <HBox spacing="50.0">
@@ -126,14 +126,26 @@
                         <TextField fx:id="publicationYearTextField" prefWidth="250.0" />
                      </children>
                   </HBox>
-                  <HBox spacing="260.0">
+                  <HBox spacing="190.0">
                      <children>
-                        <Button fx:id="goBackButton" mnemonicParsing="false" onAction="#goBackButtonClicked" text="Go Back">
+                        <Button fx:id="goBackButton" minWidth="134.0" mnemonicParsing="false" onAction="#goBackButtonClicked" text="Go Back">
                            <font>
                               <Font size="20.0" />
                            </font>
                         </Button>
-                        <Button fx:id="searchButton" layoutX="10.0" layoutY="10.0" minWidth="100.0" mnemonicParsing="false" onAction="#searchButtonClicked" text="Search">
+                        <Button fx:id="searchButton" minWidth="134.0" mnemonicParsing="false" onAction="#searchButtonClicked" text="Search">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <HBox spacing="193.0">
+                     <padding>
+                        <Insets left="325.0" />
+                     </padding>
+                     <children>
+                        <Button fx:id="addToCartButton" mnemonicParsing="false" onAction="#addToCartButtonHandler" text="Add To Cart">
                            <font>
                               <Font size="20.0" />
                            </font>

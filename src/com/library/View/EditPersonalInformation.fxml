@@ -1,14 +1,124 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.library.Controller.EditPersonalInformationController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1217.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.library.Controller.EditPersonalInformationController">
+   <children>
+       <VBox prefHeight="200.0" prefWidth="100.0">
+          <children>
+              <ImageView fitHeight="600.0" fitWidth="1333.0" pickOnBounds="true" preserveRatio="true">
+                 <image>
+                     <Image url="@../img/background.jpg" />
+                 </image>
+              </ImageView>
+          </children>
+       </VBox>
+       <BorderPane prefHeight="600.0" prefWidth="1218.0">
+           <top>
+               <Label text="EDIT PERSONAL INFORMATION" textFill="WHITE" BorderPane.alignment="CENTER">
+                   <font>
+                       <Font name="Agency FB" size="70.0" />
+                   </font>
+               </Label>
+           </top>
+           <right>
+               <VBox prefHeight="200.0" prefWidth="100.0" spacing="25.0" BorderPane.alignment="CENTER">
+                   <opaqueInsets>
+                       <Insets />
+                   </opaqueInsets>
+                   <padding>
+                       <Insets right="100.0" top="15.0" />
+                   </padding>
+                  <children>
+                      <TextField />
+                      <TextField prefHeight="31.0" prefWidth="779.0" />
+                      <TextField minWidth="559.0" prefHeight="31.0" prefWidth="559.0" />
+                      <TextField prefHeight="31.0" prefWidth="779.0" />
+                      <TextField prefHeight="31.0" prefWidth="779.0" />
+                      <TextField prefHeight="31.0" prefWidth="779.0" />
+                      <TextField prefHeight="31.0" prefWidth="779.0" />
+                  </children>
+               </VBox>
+           </right>
+           <left>
+               <VBox spacing="26.0" BorderPane.alignment="CENTER">
+                   <padding>
+                       <Insets left="200.0" top="15.0" />
+                   </padding>
+                  <children>
+                      <Label text="First Name:" textFill="WHITE">
+                          <font>
+                              <Font name="System Bold" size="20.0" />
+                          </font>
+                      </Label>
+                      <Label text="Last Name:" textFill="WHITE">
+                          <font>
+                              <Font name="System Bold" size="20.0" />
+                          </font>
+                      </Label>
+                      <Label text="Username:" textFill="WHITE">
+                          <font>
+                              <Font name="System Bold" size="20.0" />
+                          </font>
+                      </Label>
+                      <Label text="Password:" textFill="WHITE">
+                          <font>
+                              <Font name="System Bold" size="20.0" />
+                          </font>
+                      </Label>
+                      <Label text="Email Address:" textFill="WHITE">
+                          <font>
+                              <Font name="System Bold" size="20.0" />
+                          </font>
+                      </Label>
+                      <Label text="Phone Number:" textFill="WHITE">
+                          <font>
+                              <Font name="System Bold" size="20.0" />
+                          </font>
+                      </Label>
+                      <Label text="Shipping Address:" textFill="WHITE">
+                          <font>
+                              <Font name="System Bold" size="20.0" />
+                          </font>
+                      </Label>
+                  </children>
+               </VBox>
+           </left>
+           <bottom>
+               <HBox prefHeight="79.0" prefWidth="1218.0" spacing="706.0" BorderPane.alignment="CENTER">
+                   <padding>
+                       <Insets bottom="50.0" left="200.0" top="10.0" />
+                   </padding>
+                  <children>
+                      <VBox>
+                         <children>
+                             <Button fx:id="goBackButton" mnemonicParsing="false" onAction="#goBackButtonClicked" text="Go Back">
+                                 <font>
+                                     <Font size="25.0" />
+                                 </font>
+                             </Button>
+                         </children>
+                      </VBox>
+                      <VBox layoutX="10.0" layoutY="10.0">
+                         <children>
+                             <Button fx:id="saveButton" mnemonicParsing="false" onAction="#saveButtonClicked" text="Save">
+                                 <font>
+                                     <Font size="25.0" />
+                                 </font>
+                             </Button>
+                         </children>
+                      </VBox>
+                  </children>
+               </HBox>
+           </bottom>
+       </BorderPane>
+   </children>
 </AnchorPane>

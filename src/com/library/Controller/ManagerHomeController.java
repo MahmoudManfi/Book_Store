@@ -33,7 +33,7 @@ public class ManagerHomeController {
     }
 
     public void modifyABookClicked(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("../View/ModifyExistingBooks.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("../View/SearchModifyExistingBooks.fxml"));
         Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         window.setScene(new Scene(root, 1206, 588));
         window.setResizable(false);

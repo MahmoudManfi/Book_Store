@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="704.0" prefWidth="1903.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.library.Controller.CartController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="609.0" prefWidth="1446.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.library.Controller.CartController">
    <children>
        <VBox prefHeight="200.0" prefWidth="100.0">
           <children>
@@ -29,148 +29,6 @@
                    </font>
                </Label>
            </top>
-           <left>
-               <VBox spacing="20.0" BorderPane.alignment="CENTER">
-                   <padding>
-                       <Insets left="50.0" top="15.0" />
-                   </padding>
-                  <children>
-                  <HBox spacing="65.0">
-                     <children>
-                            <Label text="ISBN Number:" textFill="WHITE">
-                                <font>
-                                    <Font name="System Bold" size="20.0" />
-                                </font>
-                            </Label>
-                            <TextField fx:id="isbnNumberTextField" prefWidth="250.0">
-                           <HBox.margin>
-                              <Insets left="10.0" />
-                           </HBox.margin>
-                        </TextField>
-                     </children>
-                  </HBox>
-                  <HBox spacing="115.0">
-                     <children>
-                        <Label text="Title:" textFill="WHITE">
-                           <font>
-                              <Font name="System Bold" size="20.0" />
-                           </font>
-                        </Label>
-                        <TextField fx:id="titleTextField" prefWidth="250.0">
-                           <HBox.margin>
-                              <Insets left="47.0" />
-                           </HBox.margin>
-                        </TextField>
-                     </children>
-                  </HBox>
-                  <HBox spacing="116.0">
-                     <children>
-                        <Label text="Category:" textFill="WHITE">
-                           <font>
-                              <Font name="System Bold" size="20.0" />
-                           </font>
-                        </Label>
-                        <ComboBox fx:id="categoryComboBox" prefWidth="250.0">
-                           <HBox.margin>
-                              <Insets left="3.0" />
-                           </HBox.margin>
-                        </ComboBox>
-                     </children>
-                  </HBox>
-                  <HBox spacing="55.0">
-                     <children>
-                        <Label text="Author Name:" textFill="WHITE">
-                           <font>
-                              <Font name="System Bold" size="20.0" />
-                           </font>
-                        </Label>
-                        <TextField fx:id="authorTextField" prefWidth="250.0">
-                           <HBox.margin>
-                              <Insets left="22.0" />
-                           </HBox.margin>
-                        </TextField>
-                     </children>
-                  </HBox>
-                  <HBox spacing="55.0">
-                     <children>
-                        <Label text="Publisher Name:" textFill="WHITE">
-                           <font>
-                              <Font name="System Bold" size="20.0" />
-                           </font>
-                        </Label>
-                        <TextField fx:id="publisherTextField" prefWidth="250.0" />
-                     </children>
-                  </HBox>
-                  <HBox spacing="50.0">
-                     <children>
-                        <Label text="Publication Year:" textFill="WHITE">
-                           <font>
-                              <Font name="System Bold" size="20.0" />
-                           </font>
-                        </Label>
-                        <TextField fx:id="publicationYearTextField" prefWidth="250.0" />
-                     </children>
-                  </HBox>
-                  <HBox spacing="158.0">
-                     <children>
-                        <Label text="Price:" textFill="WHITE">
-                           <font>
-                              <Font name="System Bold" size="20.0" />
-                           </font>
-                        </Label>
-                        <TextField fx:id="priceTextField" prefWidth="250.0" />
-                     </children>
-                  </HBox>
-                  <HBox spacing="30.0">
-                     <children>
-                        <Label text="Number Of Copies:" textFill="WHITE">
-                           <font>
-                              <Font name="System Bold" size="20.0" />
-                           </font>
-                        </Label>
-                        <TextField fx:id="numOfCopiesTextField" prefWidth="250.0" />
-                     </children>
-                  </HBox>
-                  <HBox spacing="111.0">
-                     <children>
-                        <Label text="Threshold:" textFill="WHITE">
-                           <font>
-                              <Font name="System Bold" size="20.0" />
-                           </font>
-                        </Label>
-                        <TextField fx:id="thresholdTextField" prefWidth="250.0" />
-                     </children>
-                  </HBox>
-                  <HBox spacing="255.0">
-                     <children>
-                        <Button fx:id="addToCartButton" mnemonicParsing="false" onAction="#addToCartButtonClicked" text="Add To Cart">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                        </Button>
-                     </children>
-                  </HBox>
-                  </children>
-               </VBox>
-           </left>
-         <right>
-            <TableView fx:id="cartTbableView" prefHeight="470.0" prefWidth="1324.0" BorderPane.alignment="CENTER">
-              <columns>
-                <TableColumn prefWidth="108.0" text="ISBN Number" />
-                <TableColumn prefWidth="255.0" text="Title" />
-                  <TableColumn prefWidth="191.0" text="Author Name" />
-                  <TableColumn prefWidth="205.0" text="Publisher Name" />
-                  <TableColumn minWidth="0.0" prefWidth="136.0" text="Publication Year" />
-                  <TableColumn minWidth="0.0" prefWidth="77.0" text="Price" />
-                  <TableColumn prefWidth="90.0" text="Category" />
-                  <TableColumn prefWidth="155.0" text="Number Of Copies" />
-                  <TableColumn prefWidth="106.0" text="Threshold" />
-              </columns>
-               <BorderPane.margin>
-                  <Insets bottom="50.0" left="50.0" right="50.0" top="15.0" />
-               </BorderPane.margin>
-            </TableView>
-         </right>
          <bottom>
             <HBox prefHeight="100.0" prefWidth="200.0" spacing="30.0" BorderPane.alignment="CENTER">
                <children>
@@ -179,12 +37,12 @@
                         <Font size="20.0" />
                      </font>
                   </Button>
-                  <Label prefHeight="36.0" prefWidth="148.0" text="Total Price:" textFill="WHITE">
+                  <Label minWidth="150.0" text="Total Price:" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="25.0" />
                      </font>
                      <HBox.margin>
-                        <Insets left="360.0" />
+                        <Insets left="200.0" />
                      </HBox.margin>
                   </Label>
                   <Label minHeight="44.0" minWidth="250.0" style="-fx-background-color: #FFFFFF;" />
@@ -193,7 +51,7 @@
                         <Font size="20.0" />
                      </font>
                      <HBox.margin>
-                        <Insets left="515.0" />
+                        <Insets left="185.0" />
                      </HBox.margin>
                   </Button>
                   <Button fx:id="checkoutButton" mnemonicParsing="false" onAction="#checkoutButtonClicked" text="Checkout">
@@ -213,6 +71,24 @@
                </opaqueInsets>
             </HBox>
          </bottom>
+         <center>
+            <TableView fx:id="cartTbableView" minWidth="1350.0" prefHeight="351.0" prefWidth="1350.0" BorderPane.alignment="CENTER">
+              <columns>
+                <TableColumn prefWidth="108.0" text="ISBN Number" />
+                <TableColumn prefWidth="250.0" text="Title" />
+                  <TableColumn prefWidth="196.0" text="Author Name" />
+                  <TableColumn prefWidth="172.0" text="Publisher Name" />
+                  <TableColumn minWidth="0.0" prefWidth="124.0" text="Publication Year" />
+                  <TableColumn minWidth="0.0" prefWidth="89.0" text="Price" />
+                  <TableColumn prefWidth="111.0" text="Category" />
+                  <TableColumn prefWidth="155.0" text="Number Of Copies" />
+                  <TableColumn prefWidth="144.0" text="Threshold" />
+              </columns>
+               <BorderPane.margin>
+                  <Insets bottom="50.0" left="50.0" right="50.0" top="15.0" />
+               </BorderPane.margin>
+            </TableView>
+         </center>
        </BorderPane>
    </children>
 </AnchorPane>
