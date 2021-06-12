@@ -3,6 +3,8 @@ package com.library.Controller;
 import com.library.Model.databaseTables.Book;
 import com.library.Model.databaseTables.FactoryTable;
 import com.library.Model.databaseTables.Tuple;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 
 import java.sql.*;
 import java.util.*;
@@ -27,6 +29,10 @@ public class DatabaseConnector {
     }
 
     private void printException(Exception e) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("From Database");
+        alert.setContentText(e.getMessage());
+        alert.showAndWait();
         System.err.println("Got an exception! ");
         System.err.println(e.getMessage());
     }
