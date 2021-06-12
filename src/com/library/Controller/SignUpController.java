@@ -15,7 +15,7 @@ public class SignUpController {
     public Button signUpButton;
 
     public void goBackButtonClicked(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("../View/ClientHome.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("../View/sample.fxml"));
         Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         window.setScene(new Scene(root, 1206, 588));
         window.setResizable(false);

@@ -23,7 +23,7 @@
         </VBox>
         <BorderPane prefHeight="600.0" prefWidth="1218.0">
             <top>
-                <Label text="EDIT PERSONAL INFORMATION" textFill="WHITE" BorderPane.alignment="CENTER">
+                <Label text="SIGN UP" textFill="WHITE" BorderPane.alignment="CENTER">
                     <font>
                         <Font name="Agency FB" size="70.0" />
                     </font>

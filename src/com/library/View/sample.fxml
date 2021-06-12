@@ -36,12 +36,12 @@
                         <Font name="Agency FB" size="50.0" />
                      </font>
                   </Label>
-                  <Button mnemonicParsing="false" style="-fx-background-image: url('../img/background2.jpg');" text="Client">
+                  <Button fx:id="clientButton" mnemonicParsing="false" onAction="#clientButtonHandler" style="-fx-background-image: url('../img/background2.jpg');" text="Client">
                      <font>
                         <Font size="30.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" style="-fx-background-image: url('../img/background2.jpg');" text="Manager">
+                  <Button fx:id="managerButton" mnemonicParsing="false" onAction="#managerButtonHandler" style="-fx-background-image: url('../img/background2.jpg');" text="Manager">
                      <font>
                         <Font size="30.0" />
                      </font>
@@ -51,7 +51,7 @@
                         <Font name="Agency FB" size="50.0" />
                      </font>
                   </Label>
-                  <Button mnemonicParsing="false" style="-fx-background-image: url('../img/background2.jpg');" text="Sign Up">
+                  <Button fx:id="signUpButton" mnemonicParsing="false" onAction="#signUpButtonHandler" style="-fx-background-image: url('../img/background2.jpg');" text="Sign Up">
                      <font>
                         <Font size="30.0" />
                      </font>

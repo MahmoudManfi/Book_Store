@@ -17,11 +17,19 @@ import java.sql.*;
 
 public class WelcomingPageController {
     @FXML
+    public Button searchForBookButton;
+    @FXML
+    public Button PromoteCustomerButton;
+    @FXML
+    public Button shoppingCartButton;
+    @FXML
+    public Button editPersonalButton;
+    @FXML
+    public Button logOutButton;
+    @FXML
     private Button addNewBookButton;
     @FXML
     private Button updateBookButton;
-    @FXML
-    private Button deleteBookButton;
 
     @FXML
     public void addNewBookHandler(ActionEvent e) {
@@ -39,13 +47,40 @@ public class WelcomingPageController {
 
     }
 
-    public void deleteBookHandler(ActionEvent actionEvent) {
-        System.out.println("Delete the book is not availabe :D  ");
-
+    public void updateExistingBookHandler(ActionEvent actionEvent) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("../View/SearchModifyExistingBooks.fxml"));
+        Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        window.setScene(new Scene(root, 1902, 652));
+        window.setResizable(false);
     }
-    public void updateExistingBookHandler(ActionEvent actionEvent) {
-        System.out.println("Detected the updateExisted books button");
+
+
+    public void PromoteCustomerButtonHandler(ActionEvent actionEvent) {
     }
 
+    public void searchForBookClicked(ActionEvent actionEvent) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("../View/SearchForBooks.fxml"));
+        Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        window.setScene(new Scene(root, 1902, 652));
+        window.setResizable(false);
+    }
+    public void shoppingCartButtonClicked(ActionEvent actionEvent) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("../View/Cart.fxml"));
+        Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        window.setScene(new Scene(root, 1904, 622));
+        window.setResizable(false);
+    }
 
+    public void editPersonalButtonClicked(ActionEvent actionEvent) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("../View/EditPersonalInformation.fxml"));
+        Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        window.setScene(new Scene(root, 1206, 588));
+        window.setResizable(false);
+    }
+    public void logOutButtonClicked(ActionEvent actionEvent) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("../View/sample.fxml"));
+        Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        window.setScene(new Scene(root, 1206, 588));
+        window.setResizable(false);
+    }
 }

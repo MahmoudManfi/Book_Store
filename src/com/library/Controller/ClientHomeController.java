@@ -12,7 +12,6 @@ import java.io.IOException;
 
 public class ClientHomeController {
 
-    public Button searchForBookButton;
     public Button shoppingCartButton;
     public Button editPersonalButton;
     public Button logOutButton;
