@@ -20,6 +20,9 @@ import java.util.ResourceBundle;
 
 public class SearchForBooksController implements Initializable {
     public TableView searchTableView;
+    public TextField priceTextField;
+    public TextField numOfCopiesTextField;
+    public TextField thresholdTextField;
     ObservableList<String> options =
             FXCollections.observableArrayList("Science", "Art", "Religion","History", "Geography");
     public TextField isbnNumberTextField;

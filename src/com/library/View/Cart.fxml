@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="704.0" prefWidth="1903.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.library.Controller.CartController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="622.0" prefWidth="1904.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.library.Controller.CartController">
    <children>
        <VBox prefHeight="200.0" prefWidth="100.0">
           <children>
@@ -30,7 +30,7 @@
                </Label>
            </top>
            <left>
-               <VBox spacing="20.0" BorderPane.alignment="CENTER">
+               <VBox spacing="30.0" BorderPane.alignment="CENTER">
                    <padding>
                        <Insets left="50.0" top="15.0" />
                    </padding>
@@ -109,36 +109,6 @@
                            </font>
                         </Label>
                         <TextField fx:id="publicationYearTextField" prefWidth="250.0" />
-                     </children>
-                  </HBox>
-                  <HBox spacing="158.0">
-                     <children>
-                        <Label text="Price:" textFill="WHITE">
-                           <font>
-                              <Font name="System Bold" size="20.0" />
-                           </font>
-                        </Label>
-                        <TextField fx:id="priceTextField" prefWidth="250.0" />
-                     </children>
-                  </HBox>
-                  <HBox spacing="30.0">
-                     <children>
-                        <Label text="Number Of Copies:" textFill="WHITE">
-                           <font>
-                              <Font name="System Bold" size="20.0" />
-                           </font>
-                        </Label>
-                        <TextField fx:id="numOfCopiesTextField" prefWidth="250.0" />
-                     </children>
-                  </HBox>
-                  <HBox spacing="111.0">
-                     <children>
-                        <Label text="Threshold:" textFill="WHITE">
-                           <font>
-                              <Font name="System Bold" size="20.0" />
-                           </font>
-                        </Label>
-                        <TextField fx:id="thresholdTextField" prefWidth="250.0" />
                      </children>
                   </HBox>
                   <HBox spacing="255.0">

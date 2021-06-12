@@ -23,7 +23,7 @@ public class CheckOutController {
     public void goBackButtonClicked(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("../View/Cart.fxml"));
         Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        window.setScene(new Scene(root, 1903, 704));
+        window.setScene(new Scene(root, 1904, 622));
         window.setResizable(false);
     }
 }
