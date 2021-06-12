@@ -23,6 +23,8 @@ public class SearchForBooksController implements Initializable {
     public TextField priceTextField;
     public TextField numOfCopiesTextField;
     public TextField thresholdTextField;
+    public Button addToCartButton;
+    public Button modifyButton;
     ObservableList<String> options =
             FXCollections.observableArrayList("Science", "Art", "Religion","History", "Geography");
     public TextField isbnNumberTextField;
@@ -92,5 +94,14 @@ public class SearchForBooksController implements Initializable {
         tableColumns.get(8).setCellValueFactory(new PropertyValueFactory<>("threshold"));
 
         categoryComboBox.getItems().addAll(options);
+    }
+
+    public void addToCartButtonHandler(ActionEvent actionEvent) {
+    }
+
+    public void modifyButtonHandler(ActionEvent actionEvent) {
+    }
+
+    public void searchButtonHandler(ActionEvent actionEvent) {
     }
 }
