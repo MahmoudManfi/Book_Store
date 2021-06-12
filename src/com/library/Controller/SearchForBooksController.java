@@ -58,7 +58,7 @@ public class SearchForBooksController implements Initializable {
         tableColumns.get(8).setCellValueFactory(new PropertyValueFactory<>("threshold"));
 
         categoryComboBox.getItems().addAll(options);
-        addToCartButton.setDisable(true);
+        //addToCartButton.setDisable(true);
         //modifyButton.setDisable(true);
     }
 
@@ -108,6 +108,7 @@ public class SearchForBooksController implements Initializable {
 
 
     public void addToCartButtonHandler(ActionEvent actionEvent) {
+
     }
 
     public void modifyButtonHandler(ActionEvent actionEvent) {
@@ -133,7 +134,7 @@ public class SearchForBooksController implements Initializable {
         book.setTitle(titleTextField.getText().trim());
         book.setAuthorName(authorTextField.getText().trim());
         book.setPublicationYear(publicationYearTextField.getText().trim());
-        book.setCategory((String) categoryComboBox.getValue());
+        book.setCategory(categoryComboBox.getValue());
         book.setNumberCopies(Integer.valueOf(numOfCopiesTextField.getText().trim()));
         book.setPublisherName(publisherNameTextField.getText().trim());
         book.setPrice(Integer.valueOf(priceTextField.getText().trim()));
