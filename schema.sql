@@ -1,67 +1,131 @@
-CREATE SCHEMA IF NOT EXISTS bookstore ;
-USE bookstore ;
+DROP SCHEMA book_store; 
 
-CREATE TABLE IF NOT EXISTS bookstore.PUBLISHER (
-  Name VARCHAR(100) NOT NULL,
-  Address VARCHAR(100) NOT NULL,
-  Phonenumber CHAR(50) NOT NULL,
-  PRIMARY KEY (Name));
 
-CREATE TABLE IF NOT EXISTS bookstore.BOOK (
-	ISBNnumber INT NOT NULL,
-	Title VARCHAR(100) NOT NULL,
-	Author VARCHAR(100) NOT NULL,
-	PublisherName VARCHAR(100) NOT NULL,
-	PublicationYear year NOT NULL,
-	SellingPrice INT NOT NULL,
-	Category VARCHAR(100) NOT NULL,
-	Copies INT NOT NULL,
-    
-	threshold INT,
-	PRIMARY KEY (ISBNnumber),
-	CONSTRAINT publisher_name
-    FOREIGN KEY (PublisherName)
-    REFERENCES bookstore.PUBLISHER (Name)
+CREATE SCHEMA IF NOT EXISTS book_store;
+USE book_store;
+
+CREATE TABLE IF NOT EXISTS book_store.publisher (
+	name VARCHAR(100) NOT NULL,
+	address VARCHAR(100) NOT NULL,
+	phone_number VARCHAR(50) NOT NULL,
+	PRIMARY KEY (name)
+);
+
+-- CREATE TABLE IF NOT EXISTS book_store.author(
+-- 	name VARCHAR(100) NOT NULL,
+--     PRIMARY KEY(name)
+-- );
+
+CREATE TABLE IF NOT EXISTS book_store.book (
+	ISBN_number VARCHAR(100) NOT NULL,
+	title VARCHAR(100) NOT NULL,
+	author_name VARCHAR(100) NOT NULL,
+	publisher_name VARCHAR(100) NOT NULL,
+	publication_year year NOT NULL,
+	price INT NOT NULL,
+	category VARCHAR(100) NOT NULL,
+	number_copies INT NOT NULL,
+	threshold INT NOT NULL,
+
+	PRIMARY KEY (ISBN_number),
+    FOREIGN KEY (publisher_name)
+    REFERENCES book_store.publisher (name)
     ON DELETE NO ACTION
-    ON UPDATE CASCADE);
+    ON UPDATE CASCADE
+);
 
-CREATE TABLE IF NOT EXISTS bookstore.BookOrders (
-  ISBNnumber INT NOT NULL,
-  Copies INT NOT NULL,
-  PRIMARY KEY (ISBNnumber),
-  CONSTRAINT ISBN_number
-    FOREIGN KEY (ISBNnumber)
-    REFERENCES bookstore.BOOK (ISBNnumber)
-    ON DELETE NO ACTION
-    ON UPDATE CASCADE);
+CREATE TABLE IF NOT EXISTS book_store.book_order (
+	number INT NOT NULL,
+    ISBN_number VARCHAR(100) NOT NULL,
+	number_copies INT NOT NULL,
 
-Create table if not exists bookstore.users(
-	username varchar(100) not null,
-    password varchar(100) not null,
-    lastName varchar(100),
-    firstName varchar(100),
-    email varchar(100),
-    phoneNumber char(50),
-    shippingAddress varchar(100),
-    status varchar(100),
-    PRIMARY KEY (`username`)
-    );
+	PRIMARY KEY (number),
+    FOREIGN KEY (ISBN_number)
+    REFERENCES book_store.book (ISBN_number)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
+);
 
-Create table if not exists bookstore.cart(
-	ISBN INT not null,
-    price INT not null,
-    copies Int not null,
-    totalPrice Int,
-    FOREIGN KEY (ISBN)
-    REFERENCES bookstore.BOOK (ISBNnumber)
-    ON DELETE NO ACTION
-    ON UPDATE CASCADE);
+DELIMITER $$
 
-Create table if not exists bookstore.soldBooks(
-	ISBN INT not null,
-    sellingDate date,
-    soldCopies varchar(100),
-    FOREIGN KEY (ISBN)
-    REFERENCES bookstore.BOOK (ISBNnumber)
-    ON DELETE NO ACTION
-    ON UPDATE CASCADE)
+CREATE TRIGGER not_negative
+BEFORE UPDATE ON book_store.book
+FOR EACH ROW
+BEGIN
+	IF NEW.number_copies < 0 THEN
+		SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'The number of copies mustn\'t be negative',
+        MYSQL_ERRNO = 1001;
+	END IF;
+END $$
+
+DELIMITER $$
+
+CREATE TRIGGER place_order
+AFTER UPDATE ON book_store.book
+FOR EACH ROW
+BEGIN
+	IF NEW.number_copies < OLD.threshold THEN
+		SIGNAL SQLSTATE '01000'
+        SET MESSAGE_TEXT = 'Number of copies is less than the threshold',
+        MYSQL_ERRNO = 1000;
+	END IF;
+END $$
+
+DELIMITER ;
+
+CREATE TRIGGER confirm_order
+BEFORE DELETE ON book_store.book_order
+FOR EACH ROW
+SET @book_store.number_copies = @book_store.number_copies + OLD.number_copies;
+
+CREATE TABLE IF NOT EXISTS book_store.user(
+	user_name VARCHAR(100) NOT NULL,
+    password VARCHAR(100) NOT NULL,
+    last_name VARCHAR(50) NOT NULL,
+    first_name VARCHAR(50) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    phone_number VARCHAR(50) NOT NULL,
+    shipping_address VARCHAR(100) NOT NULL,
+    status VARCHAR(100) NOT NULL,
+    PRIMARY KEY (user_name)
+);
+
+CREATE TABLE IF NOT EXISTS book_store.cart_item(
+	number INT NOT NULL,
+    ISBN_number VARCHAR(100) NOT NULL,
+    user_name VARCHAR(100) NOT NULL,
+    number_copies INT NOT NULL,
+
+    PRIMARY KEY (number),
+    FOREIGN KEY (ISBN_number)
+    REFERENCES book_store.book (ISBN_number)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+    FOREIGN KEY (user_name)
+    REFERENCES book_store.user (user_name)
+    ON UPDATE CASCADE
+    ON DELETE CASCADE
+);
+
+Create table if not exists book_store.sold_book(
+	number VARCHAR(100) NOT NULL,
+    ISBN_number VARCHAR(100),
+    user_name VARCHAR(100),
+    date DATE NOT NULL,
+    number_copies INT NOT NULL,
+    price INT NOT NULL,
+
+    PRIMARY KEY (number),
+    FOREIGN KEY (ISBN_number)
+    REFERENCES book_store.book (ISBN_number)
+    ON DELETE SET NULL
+    ON UPDATE CASCADE,
+    FOREIGN KEY (user_name)
+    REFERENCES book_store.user (user_name)
+    ON DELETE SET NULL
+    ON UPDATE CASCADE
+);
+-- insert into book(ISBN_number, title, author_name, publisher_name, publication_year, price, category, number_copies,
+--                  threshold)
+-- values ("12123", "Harry Potter", "J.K Rowling", "dummy publisher", 2002, 50, "Science", 100, 4);

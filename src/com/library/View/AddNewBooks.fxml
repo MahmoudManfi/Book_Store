@@ -1,112 +1,133 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0"
-            prefWidth="1217.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.library.Controller.SearchForBooksController">
-    <VBox prefHeight="200.0" prefWidth="100.0">
-        <ImageView fitHeight="600.0" fitWidth="1333.0" pickOnBounds="true" preserveRatio="true">
-            <Image url="@../img/background.jpg"/>
-        </ImageView>
-    </VBox>
-    <BorderPane prefHeight="600.0" prefWidth="1218.0">
-        <top>
-            <Label text="ADD A BOOK" textFill="WHITE" BorderPane.alignment="CENTER">
-                <font>
-                    <Font name="Agency FB" size="70.0"/>
-                </font>
-            </Label>
-        </top>
-        <right>
-            <VBox prefHeight="200.0" prefWidth="100.0" spacing="25.0" BorderPane.alignment="CENTER">
-                <opaqueInsets>
-                    <Insets/>
-                </opaqueInsets>
-                <padding>
-                    <Insets right="100.0" top="15.0"/>
-                </padding>
-                <TextField/>
-                <TextField prefHeight="31.0" prefWidth="779.0"/>
-                <TextField minWidth="559.0" prefHeight="31.0" prefWidth="559.0"/>
-                <TextField prefHeight="31.0" prefWidth="779.0"/>
-                <TextField prefHeight="31.0" prefWidth="779.0"/>
-                <TextField prefHeight="31.0" prefWidth="779.0"/>
-                <TextField prefHeight="31.0" prefWidth="779.0"/>
-                <TextField prefHeight="31.0" prefWidth="779.0"/>
-            </VBox>
-        </right>
-        <left>
-            <VBox spacing="26.0" BorderPane.alignment="CENTER">
-                <padding>
-                    <Insets left="200.0" top="15.0"/>
-                </padding>
-                <Label text="ISBN Number:" textFill="WHITE">
-                    <font>
-                        <Font name="System Bold" size="20.0"/>
-                    </font>
-                </Label>
-                <Label text="Title:" textFill="WHITE">
-                    <font>
-                        <Font name="System Bold" size="20.0"/>
-                    </font>
-                </Label>
-                <Label text="Author:" textFill="WHITE">
-                    <font>
-                        <Font name="System Bold" size="20.0"/>
-                    </font>
-                </Label>
-                <Label text="Publisher Name:" textFill="WHITE">
-                    <font>
-                        <Font name="System Bold" size="20.0"/>
-                    </font>
-                </Label>
-                <Label text="Publication Year:" textFill="WHITE">
-                    <font>
-                        <Font name="System Bold" size="20.0"/>
-                    </font>
-                </Label>
-                <Label text="Selling Price:" textFill="WHITE">
-                    <font>
-                        <Font name="System Bold" size="20.0"/>
-                    </font>
-                </Label>
-                <Label text="Category:" textFill="WHITE">
-                    <font>
-                        <Font name="System Bold" size="20.0"/>
-                    </font>
-                </Label>
-                <Label text="Number Of Copies:" textFill="WHITE">
-                    <font>
-                        <Font name="System Bold" size="20.0"/>
-                    </font>
-                </Label>
-            </VBox>
-        </left>
-        <bottom>
-            <HBox prefHeight="79.0" prefWidth="1218.0" spacing="713.0" BorderPane.alignment="CENTER">
-                <padding>
-                    <Insets left="200.0" top="15.0"/>
-                </padding>
-                <VBox>
-                    <Button mnemonicParsing="false" text="Go Back">
-                        <font>
-                            <Font size="25.0"/>
-                        </font>
-                    </Button>
-                </VBox>
-                <VBox layoutX="10.0" layoutY="10.0">
-                    <Button mnemonicParsing="false" text="Add">
-                        <font>
-                            <Font size="25.0"/>
-                        </font>
-                    </Button>
-                </VBox>
-            </HBox>
-        </bottom>
-    </BorderPane>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1217.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.library.Controller.AddNewBooksController">
+   <children>
+       <VBox prefHeight="200.0" prefWidth="100.0">
+          <children>
+              <ImageView fitHeight="600.0" fitWidth="1333.0" pickOnBounds="true" preserveRatio="true">
+                 <image>
+                     <Image url="@../img/background.jpg" />
+                 </image>
+              </ImageView>
+          </children>
+       </VBox>
+       <BorderPane prefHeight="600.0" prefWidth="1218.0">
+           <top>
+               <Label text="ADD A BOOK" textFill="WHITE" BorderPane.alignment="CENTER">
+                   <font>
+                       <Font name="Agency FB" size="70.0" />
+                   </font>
+               </Label>
+           </top>
+           <right>
+               <VBox prefHeight="200.0" prefWidth="100.0" spacing="15.0" BorderPane.alignment="CENTER">
+                   <opaqueInsets>
+                       <Insets />
+                   </opaqueInsets>
+                   <padding>
+                       <Insets right="150.0" top="10.0" />
+                   </padding>
+                  <children>
+                      <TextField fx:id="isbnNumberTextField" />
+                      <TextField fx:id="titleTextField" prefHeight="31.0" prefWidth="779.0" />
+                      <TextField fx:id="authorTextField" minWidth="559.0" prefHeight="31.0" prefWidth="559.0" />
+                      <TextField fx:id="publisherNameTextField" prefHeight="31.0" prefWidth="779.0" />
+                      <TextField fx:id="publicationYearTextField" prefHeight="31.0" prefWidth="779.0" />
+                      <TextField fx:id="sellingPriceTextField" prefHeight="31.0" prefWidth="779.0" />
+                      <TextField fx:id="categoryTextField" prefHeight="31.0" prefWidth="779.0" />
+                      <TextField fx:id="numOfCopiesTextField" prefHeight="31.0" prefWidth="779.0" />
+                  <TextField fx:id="thresholdTextField" prefHeight="31.0" prefWidth="779.0" />
+                  </children>
+               </VBox>
+           </right>
+           <left>
+               <VBox spacing="17.0" BorderPane.alignment="CENTER">
+                   <padding>
+                       <Insets left="150.0" top="10.0" />
+                   </padding>
+                  <children>
+                      <Label text="ISBN Number:" textFill="WHITE">
+                          <font>
+                              <Font name="System Bold" size="20.0" />
+                          </font>
+                      </Label>
+                      <Label text="Title:" textFill="WHITE">
+                          <font>
+                              <Font name="System Bold" size="20.0" />
+                          </font>
+                      </Label>
+                      <Label text="Author:" textFill="WHITE">
+                          <font>
+                              <Font name="System Bold" size="20.0" />
+                          </font>
+                      </Label>
+                      <Label text="Publisher Name:" textFill="WHITE">
+                          <font>
+                              <Font name="System Bold" size="20.0" />
+                          </font>
+                      </Label>
+                      <Label text="Publication Year:" textFill="WHITE">
+                          <font>
+                              <Font name="System Bold" size="20.0" />
+                          </font>
+                      </Label>
+                      <Label text="Selling Price:" textFill="WHITE">
+                          <font>
+                              <Font name="System Bold" size="20.0" />
+                          </font>
+                      </Label>
+                      <Label text="Category:" textFill="WHITE">
+                          <font>
+                              <Font name="System Bold" size="20.0" />
+                          </font>
+                      </Label>
+                      <Label text="Number Of Copies:" textFill="WHITE">
+                          <font>
+                              <Font name="System Bold" size="20.0" />
+                          </font>
+                      </Label>
+                  <Label text="Threshold:" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
+                  </children>
+               </VBox>
+           </left>
+           <bottom>
+               <HBox prefHeight="79.0" prefWidth="1218.0" spacing="713.0" BorderPane.alignment="CENTER">
+                   <padding>
+                       <Insets left="150.0" top="10.0" />
+                   </padding>
+                  <children>
+                      <VBox>
+                         <children>
+                             <Button fx:id="goBackButton" mnemonicParsing="false" onAction="#goBackButtonClicked" text="Go Back">
+                                 <font>
+                                     <Font size="25.0" />
+                                 </font>
+                             </Button>
+                         </children>
+                      </VBox>
+                      <VBox layoutX="10.0" layoutY="10.0">
+                         <children>
+                             <Button fx:id="addButton" mnemonicParsing="false" onAction="#addButtonClicked" text="Add">
+                                 <font>
+                                     <Font size="25.0" />
+                                 </font>
+                             </Button>
+                         </children>
+                      </VBox>
+                  </children>
+               </HBox>
+           </bottom>
+       </BorderPane>
+   </children>
 </AnchorPane>
