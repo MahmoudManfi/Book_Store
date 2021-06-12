@@ -1,5 +1,6 @@
 package com.library.Model;
 
+import com.library.Controller.DatabaseConnector;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 
@@ -14,7 +15,16 @@ public class Publisher_order {
 
     private void insertOrder(String ISBN_number, int numberCopies) {
         System.out.println("Insert order for confirmation");
+
+        DatabaseConnector databaseConnector = DatabaseConnector.getInstance();
+
+        String query = "INSERT INTO book_store.book_order (ISBN_number, number_copies) " +
+                "VALUES ('" + ISBN_number + "', " + numberCopies + ")";
+
+        System.out.println(query);
+        databaseConnector.executeUpdate(query);
     }
+
 
     private void showConfirmAlert(String publisherName, String bookTitle, int numberCopies){
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -28,6 +38,9 @@ public class Publisher_order {
 
     private void deleteOrder() {
         System.out.println("Delete order after confirmation");
+        DatabaseConnector databaseConnector = DatabaseConnector.getInstance();
+        String query = "DELETE FROM book_store.book_order " +
+                "WHERE (number) IN (@@identity)";
+        databaseConnector.executeUpdate(query);
     }
-
 }

@@ -1,10 +1,13 @@
 package com.library.Model;
 
+import java.sql.ResultSet;
+import java.sql.SQLDataException;
+import java.sql.SQLException;
 import java.time.Year;
 
 // This class could be created using a builder design pattern
 /// but I am trying to provide less overhead in the heap
-public class Book {
+public class Book implements KingSelect{
     String isbn;
     String title;
     String authorName;
@@ -100,5 +103,18 @@ public class Book {
 
     public void setThreshold(Integer threshold) {
         this.threshold = threshold;
+    }
+
+    @Override
+    public void build(ResultSet resultSet) throws SQLException {
+        setIsbn(resultSet.getString(1));
+        setTitle(resultSet.getString(2));
+        setAuthorName(resultSet.getString(3));
+        setPublisherName(resultSet.getString(4));
+        setPublicationYear(resultSet.getString(5));
+        setPrice(resultSet.getInt(6));
+        setCategory(resultSet.getString(7));
+        setNumberCopies(resultSet.getInt(8));
+        setThreshold(resultSet.getInt(9));
     }
 }
