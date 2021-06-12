@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1217.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.library.Controller.CheckOutController">
+   <children>
+       <VBox prefHeight="200.0" prefWidth="100.0">
+          <children>
+              <ImageView fitHeight="600.0" fitWidth="1333.0" pickOnBounds="true" preserveRatio="true">
+                 <image>
+                     <Image url="@../img/background.jpg" />
+                 </image>
+              </ImageView>
+          </children>
+       </VBox>
+       <BorderPane prefHeight="600.0" prefWidth="1218.0">
+           <top>
+               <Label text="CHECKOUT" textFill="WHITE" BorderPane.alignment="CENTER">
+                   <font>
+                       <Font name="Agency FB" size="70.0" />
+                   </font>
+               </Label>
+           </top>
+         <right>
+               <VBox spacing="40.0" BorderPane.alignment="CENTER">
+                   <padding>
+                       <Insets right="175.0" top="80.0" />
+                   </padding>
+                  <children>
+                      <TextField fx:id="cardNoTextField" maxWidth="570.0" prefHeight="65.0" prefWidth="450.0">
+                          <font>
+                              <Font size="30.0" />
+                          </font>
+                      </TextField>
+                  <HBox prefHeight="100.0" prefWidth="200.0" spacing="150.0">
+                     <children>
+                            <TextField fx:id="expiryDateTextField" maxWidth="150.0" prefHeight="60.0" promptText="MM/YY">
+                                <font>
+                                    <Font size="30.0" />
+                                </font>
+                            </TextField>
+                        <Button fx:id="confirmButton" mnemonicParsing="false" onAction="#confirmButtonClicked" prefWidth="150.0" text="Confirm">
+                           <font>
+                              <Font size="30.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </HBox>
+                  </children>
+               </VBox>
+         </right>
+         <left>
+            <VBox spacing="60.0" BorderPane.alignment="CENTER">
+               <padding>
+                  <Insets left="290.0" top="80.0" />
+               </padding>
+               <children>
+                  <Label text="Card No:" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="30.0" />
+                     </font>
+                  </Label>
+                  <Label text="Expiry Date:" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="30.0" />
+                     </font>
+                  </Label>
+                  <HBox prefHeight="100.0" prefWidth="200.0" spacing="150.0">
+                     <children>
+                        <Button fx:id="goBackButton" mnemonicParsing="false" onAction="#goBackButtonClicked" prefWidth="150.0" text="Go Back">
+                           <font>
+                              <Font size="30.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </left>
+       </BorderPane>
+   </children>
+</AnchorPane>
