@@ -57,11 +57,10 @@ public class DatabaseConnector {
             st = conn.createStatement();
             int ret = st.executeUpdate(query);
             st.close();
+            System.out.println("Query done successfully !! ");
         } catch (Exception e) {
             System.err.println("Got an exception!");
             System.err.println(e.getMessage());
-        } finally {
-            System.out.println("Query done successfully !! ");
         }
     }
 
@@ -72,7 +71,8 @@ public class DatabaseConnector {
     }
 
     void updateBook(Book book) {
-
+        String query = generateUpdateQuery(book);
+        execute_query(query);
     }
 
     List<Book> searchForBooks(Book book) {
@@ -125,31 +125,62 @@ public class DatabaseConnector {
     }
 
     private String generateUpdateQuery(Book book) {
-        return null;
+        String updateFields = "";
+        String query = "";
+        if (book.getTitle() != null && !book.getTitle().trim().equals("")) {
+            updateFields += " title = \"" + book.getTitle() + "\" ,";
+        }
+        if (book.getAuthorName() != null && !book.getAuthorName().trim().equals("")) {
+            updateFields += " author_name = \"" + book.getAuthorName() + "\" ,";
+        }
+        if (book.getPublisherName() != null && !book.getPublisherName().trim().equals("")) {
+            updateFields += " publisher_name = \"" + book.getPublisherName() + "\" ,";
+        }
+        if (book.getPublicationYear() != null) {
+            updateFields += " publication_year = " + book.getPublicationYear() + " ,";
+        }
+        if (book.getCategory() != null && !book.getCategory().trim().equals("")) {
+            updateFields += " category = \"" + book.getCategory() + "\" ,";
+        }
+        if (book.getNumberCopies() != null) {
+            updateFields += " number_copies = " + book.getNumberCopies() + " ,";
+        }
+        if (book.getThreshold() != null) {
+            updateFields += " threshold = " + book.getThreshold() + " ,";
+        }
+        if (!updateFields.trim().equals("")) {
+            updateFields = updateFields.substring(0, updateFields.length() - 2);
+            query = "update book set " + updateFields;
+            query += " where ISBN_number = " + book.getIsbn() + ";";
+        }
+        System.err.println("update Query: " + query);
+
+        return query;
     }
 
-    private String generateSearchedBooks(Book book){
+    private String generateSearchedBooks(Book book) {
         String query = "select * from book";
         String where = " where";
         String conditions = "";
         if (book.getIsbn() != null && !book.getIsbn().isEmpty()) {
             conditions += " ISBN_number = " + book.getIsbn() + " &&";
         }
-        if (book.getTitle()!= null && !book.getTitle().trim().equals("")) {
+        if (book.getTitle() != null && !book.getTitle().trim().equals("")) {
             conditions += " title = \"" + book.getTitle() + "\" &&";
         }
-        if (book.getAuthorName()!= null && !book.getAuthorName().trim().equals("")) {
+        if (book.getAuthorName() != null && !book.getAuthorName().trim().equals("")) {
             conditions += " author_name = \"" + book.getAuthorName() + "\" &&";
         }
-        if (book.getPublisherName()!= null && !book.getPublisherName().trim().equals("")) {
+        if (book.getPublisherName() != null && !book.getPublisherName().trim().equals("")) {
             conditions += " publisher_name = \"" + book.getPublisherName() + "\" &&";
         }
-        if (book.getPublicationYear()!= null && !book.getPublicationYear().trim().equals("")) {
+        if (book.getPublicationYear() != null && !book.getPublicationYear().trim().equals("")) {
             conditions += " publication_year = \"" + book.getPublicationYear() + "\" &&";
         }
-        if (book.getCategory()!= null && !book.getCategory().trim().equals("")) {
+        if (book.getCategory() != null && !book.getCategory().trim().equals("")) {
             conditions += " category = \"" + book.getCategory() + "\" &&";
         }
+
         //there exists one condition
         if (!conditions.trim().equals("")) {
             conditions = conditions.substring(0, conditions.length() - 2) + ";";
@@ -157,7 +188,19 @@ public class DatabaseConnector {
         } else {
             query += ";";
         }
-        System.out.println("Search Query: "+ query);
+        System.err.println("Search Query: " + query);
         return query;
     }
+
+
+
+    // Note : if we update a book with non-existing ISBN, the database will not give us any feedback
+    // Should we inform the user if there are no records mathcing his update query
+//    public static void main(String[] args) {
+//        Book book = new Book();
+//        book.setIsbn("123333123");
+//        book.setTitle("new harry potter");
+//        book.setThreshold(100);
+//        DatabaseConnector.getInstance().updateBook(book);
+//    }
 }
