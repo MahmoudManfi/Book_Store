@@ -39,6 +39,7 @@ public class SearchForBooksController implements Initializable {
     }
 
     public void searchButtonClicked(ActionEvent actionEvent) {
+        searchTableView.getItems().clear();
         System.out.println("Searching for books in progress....");
         Book newBook = null;
         try {
