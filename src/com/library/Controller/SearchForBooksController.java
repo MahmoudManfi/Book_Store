@@ -20,6 +20,8 @@ import java.util.ResourceBundle;
 
 public class SearchForBooksController implements Initializable {
     public TableView searchTableView;
+    TableView.TableViewSelectionModel<Book> selectionModel;
+
     public TextField priceTextField;
     public TextField numOfCopiesTextField;
     public TextField thresholdTextField;
@@ -30,7 +32,7 @@ public class SearchForBooksController implements Initializable {
     public TextField isbnNumberTextField;
     public TextField titleTextField;
     @FXML
-    public ComboBox categoryComboBox;
+    public ComboBox<String> categoryComboBox;
     @FXML
     public TextField authorTextField;
     @FXML
@@ -111,8 +113,10 @@ public class SearchForBooksController implements Initializable {
     public void modifyButtonHandler(ActionEvent actionEvent) {
         System.out.println("Updating existing book in progress....");
         Book newBook;
+        newBook = generateFromLabels();
+        ObservableList<Book> selectedItems = selectionModel.getSelectedItems();
+        selectedItems = (ObservableList<Book>) newBook;
         try{
-            newBook = generateFromLabels();
             DatabaseConnector.getInstance().updateBook(newBook);
         } catch (RuntimeException exception) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);

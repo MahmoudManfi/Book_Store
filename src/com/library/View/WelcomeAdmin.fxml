@@ -45,7 +45,7 @@
                                       <Font size="30.0" />
                                   </font>
                               </Button>
-                              <Button fx:id="updateBookButton" minWidth="375.0" mnemonicParsing="false" onAction="#updateExistingBookHandler" style="-fx-background-image: url('../img/background2.jpg');" text="Update Existing Book">
+                              <Button fx:id="updateBookButton" minWidth="375.0" mnemonicParsing="false" onAction="#updateExistingBookHandler" style="-fx-background-image: url('../img/background2.jpg');" text="Advanced Search">
                                   <font>
                                       <Font size="30.0" />
                                   </font>

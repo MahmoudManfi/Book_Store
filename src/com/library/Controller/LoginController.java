@@ -21,6 +21,7 @@ public class LoginController {
     public Button signUpButton;
 
     public void signInButtonClicked(ActionEvent actionEvent) {
+
     }
 
     public void signUpButtonHandler(ActionEvent actionEvent) throws IOException {
