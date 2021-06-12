@@ -2,3 +2,5 @@
 .git
 out
 *.iml
+output
+.gitignore
