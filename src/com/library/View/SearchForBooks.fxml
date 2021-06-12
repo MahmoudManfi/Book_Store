@@ -113,7 +113,7 @@
                               <Font name="System Bold" size="20.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="publisherTextField" prefWidth="250.0" />
+                        <TextField fx:id="publisherNameTextField" prefWidth="250.0" />
                      </children>
                   </HBox>
                   <HBox spacing="50.0">

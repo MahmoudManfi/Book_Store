@@ -29,8 +29,6 @@ public class CartController {
     public Button removeButton;
     public Button checkoutButton;
 
-    public void addToCartButtonClicked(ActionEvent actionEvent) {
-    }
 
     public void goBackButtonClicked(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("../View/ClientHome.fxml"));

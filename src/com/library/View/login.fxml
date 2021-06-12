@@ -1,52 +1,105 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1217.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.library.Controller.LoginController">
-    <VBox prefHeight="200.0" prefWidth="100.0">
-        <ImageView fitHeight="600.0" fitWidth="1333.0" pickOnBounds="true" preserveRatio="true">
-            <Image url="@../img/background.jpg" />
-        </ImageView>
-    </VBox>
-    <BorderPane prefHeight="600.0" prefWidth="1218.0">
-        <top>
-            <Label text="WELCOME TO BOOK STORE" textFill="WHITE" BorderPane.alignment="CENTER">
-                <font>
-                    <Font name="Agency FB" size="70.0" />
-                </font>
-            </Label>
-        </top>
-        <right>
-            <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
-        </right>
-        <left>
-            <Region prefHeight="496.0" prefWidth="329.0" BorderPane.alignment="CENTER" />
-        </left>
-        <center>
-            <VBox prefHeight="200.0" prefWidth="100.0" spacing="40.0" BorderPane.alignment="CENTER">
-                <padding>
-                    <Insets top="80.0" />
-                </padding>
-                <TextField fx:id="usernameTextField" maxWidth="570.0" prefHeight="60.0" prefWidth="570.0" promptText="username">
-                    <font>
-                        <Font size="30.0" />
-                    </font>
-                </TextField>
-                <TextField fx:id="passwordTextField" maxWidth="570.0" prefHeight="60.0" promptText="password">
-                    <font>
-                        <Font size="30.0" />
-                    </font>
-                </TextField>
-                <Button fx:id="signInButton" mnemonicParsing="false" onAction="#signInButtonClicked" text="Sign in">
-                    <font>
-                        <Font size="30.0" />
-                    </font>
-                </Button>
-            </VBox>
-        </center>
-    </BorderPane>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1217.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.library.Controller.LoginController">
+   <children>
+       <VBox prefHeight="200.0" prefWidth="100.0">
+          <children>
+              <ImageView fitHeight="600.0" fitWidth="1333.0" pickOnBounds="true" preserveRatio="true">
+                 <image>
+                     <Image url="@../img/background.jpg" />
+                 </image>
+              </ImageView>
+          </children>
+       </VBox>
+       <BorderPane prefHeight="600.0" prefWidth="1218.0">
+           <top>
+               <Label text="WELCOME TO BOOK STORE" textFill="WHITE" BorderPane.alignment="CENTER">
+                   <font>
+                       <Font name="Agency FB" size="70.0" />
+                   </font>
+               </Label>
+           </top>
+           <right>
+               <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
+           </right>
+           <center>
+               <VBox prefHeight="200.0" prefWidth="100.0" spacing="30.0" BorderPane.alignment="CENTER">
+                   <padding>
+                       <Insets left="220.0" top="30.0" />
+                   </padding>
+                  <children>
+                  <HBox prefHeight="100.0" prefWidth="200.0" spacing="50.0">
+                     <children>
+                        <Label text="Username:" textFill="WHITE">
+                           <font>
+                              <Font name="Agency FB" size="50.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="usernameTextField" maxWidth="570.0" prefHeight="60.0" prefWidth="570.0">
+                           <font>
+                              <Font size="30.0" />
+                           </font>
+                        </TextField>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0" spacing="50.0">
+                     <children>
+                        <Label text="Password:" textFill="WHITE">
+                           <font>
+                              <Font name="Agency FB" size="50.0" />
+                           </font>
+                        </Label>
+                            <TextField fx:id="passwordTextField" maxWidth="570.0" prefHeight="60.0" prefWidth="570.0">
+                                <font>
+                                    <Font size="30.0" />
+                                </font>
+                            </TextField>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0" spacing="50.0">
+                     <children>
+                            <Button fx:id="signInButton" minWidth="145.0" mnemonicParsing="false" onAction="#signInButtonClicked" text="Sign in">
+                                <font>
+                                    <Font size="30.0" />
+                                </font>
+                            </Button>
+                        <Label fx:id="label" textFill="RED">
+                           <font>
+                              <Font name="Agency FB Bold" size="30.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <padding>
+                        <Insets left="215.0" />
+                     </padding>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0" spacing="35.0">
+                     <children>
+                        <Label text="New User? " textFill="WHITE">
+                           <font>
+                              <Font name="Agency FB" size="50.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="signUpButton" mnemonicParsing="false" onAction="#signUpButtonHandler" style="-fx-background-image: url('../img/background2.jpg');" text="Sign Up">
+                           <font>
+                              <Font size="30.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </HBox>
+                  </children>
+               <BorderPane.margin>
+                  <Insets />
+               </BorderPane.margin>
+               </VBox>
+           </center>
+       </BorderPane>
+   </children>
 </AnchorPane>
