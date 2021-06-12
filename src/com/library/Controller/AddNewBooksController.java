@@ -36,25 +36,6 @@ public class AddNewBooksController {
     private TextField thresholdTextField;
 
 
-    public void addBookHandler(ActionEvent e) {
-        System.out.println("Adding new book in progress....");
-        Book newBook = null;
-        try {
-            newBook = generateFromLabels();
-            DatabaseConnector.getInstance().addBook(newBook);
-        } catch (NullPointerException exception) {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Wrong Input");
-            alert.setContentText("You can't leave empty values when adding books");
-            alert.showAndWait();
-        } catch (RuntimeException exception) {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Wrong Input");
-            alert.setContentText("You can't insert strings in integer places ");
-            alert.showAndWait();
-        }
-    }
-
     Book generateFromLabels() throws NullPointerException {
         Book book = new Book();
         book.setIsbn(isbnNumberTextField.getText().trim());
@@ -79,5 +60,21 @@ public class AddNewBooksController {
     }
 
     public void addButtonClicked(ActionEvent actionEvent) {
+        System.out.println("Adding new book in progress....");
+        Book newBook = null;
+        try {
+            newBook = generateFromLabels();
+            DatabaseConnector.getInstance().addBook(newBook);
+        } catch (NullPointerException exception) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Wrong Input");
+            alert.setContentText("You can't leave empty values when adding books");
+            alert.showAndWait();
+        } catch (RuntimeException exception) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Wrong Input");
+            alert.setContentText("You can't insert strings in integer places ");
+            alert.showAndWait();
+        }
     }
 }
