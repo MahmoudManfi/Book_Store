@@ -14,7 +14,20 @@ public class Book {
     String category;
     Integer numberCopies;
     Integer threshold;
+    public Book(){
 
+    }
+    public Book(String isbn, String title, String authorName, String publisherName, String publicationYear, Integer price, String category, Integer numberCopies, Integer threshold) {
+        this.isbn = isbn;
+        this.title = title;
+        this.authorName = authorName;
+        this.publisherName = publisherName;
+        this.publicationYear = publicationYear;
+        this.price = price;
+        this.category = category;
+        this.numberCopies = numberCopies;
+        this.threshold = threshold;
+    }
 
     public String getIsbn() {
         return isbn;
