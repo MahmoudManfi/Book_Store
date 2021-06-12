@@ -1,6 +1,6 @@
 package com.library.Controller;
 
-import com.library.Model.Book;
+import com.library.Model.databaseTables.Book;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;

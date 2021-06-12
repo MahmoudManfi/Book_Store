@@ -40,14 +40,6 @@ CREATE TABLE IF NOT EXISTS book_store.book_order (
     ON UPDATE CASCADE
 );
 
-INSERT INTO book_store.publisher VALUES('a7a', 'sdfsdfsd', 'sdfsdfsdf');
-
-INSERT INTO book_store.book VALUES('123', 'sdfsdf', 'sdfsdfsdf', 'a7a', '2022', 12, '234324', 234, 34);
-
-INSERT INTO book_store.book_order (ISBN_number, number_copies) VALUES('123', 23);
-INSERT INTO book_store.book_order (ISBN_number, number_copies) VALUES('123', 23);
-INSERT INTO book_store.book_order (ISBN_number, number_copies) VALUES('123', 23);
-
 DELIMITER $$
 
 CREATE TRIGGER not_negative

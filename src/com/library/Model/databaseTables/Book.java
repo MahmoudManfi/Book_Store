@@ -1,13 +1,11 @@
-package com.library.Model;
+package com.library.Model.databaseTables;
 
 import java.sql.ResultSet;
-import java.sql.SQLDataException;
 import java.sql.SQLException;
-import java.time.Year;
 
 // This class could be created using a builder design pattern
 /// but I am trying to provide less overhead in the heap
-public class Book implements KingSelect{
+public class Book implements Tuple {
     String isbn;
     String title;
     String authorName;
