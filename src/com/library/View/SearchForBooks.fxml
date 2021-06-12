@@ -29,97 +29,8 @@
                    </font>
                </Label>
            </top>
-           <left>
-               <VBox spacing="20.0" BorderPane.alignment="CENTER">
-                   <padding>
-                       <Insets left="50.0" top="15.0" />
-                   </padding>
-                  <children>
-                  <HBox spacing="50.0">
-                     <children>
-                            <Label text="ISBN Number:" textFill="WHITE">
-                                <font>
-                                    <Font name="System Bold" size="20.0" />
-                                </font>
-                            </Label>
-                            <TextField fx:id="isbnNumberTextField" prefWidth="250.0">
-                           <HBox.margin>
-                              <Insets left="10.0" />
-                           </HBox.margin>
-                        </TextField>
-                     </children>
-                  </HBox>
-                  <HBox spacing="100.0">
-                     <children>
-                        <Label text="Title:" textFill="WHITE">
-                           <font>
-                              <Font name="System Bold" size="20.0" />
-                           </font>
-                        </Label>
-                        <TextField fx:id="titleTextField" prefWidth="250.0">
-                           <HBox.margin>
-                              <Insets left="47.0" />
-                           </HBox.margin>
-                        </TextField>
-                     </children>
-                  </HBox>
-                  <HBox spacing="100.0">
-                     <children>
-                        <Label text="Category:" textFill="WHITE">
-                           <font>
-                              <Font name="System Bold" size="20.0" />
-                           </font>
-                        </Label>
-                        <ComboBox fx:id="categoryComboBox" prefWidth="250.0">
-                           <HBox.margin>
-                              <Insets left="3.0" />
-                           </HBox.margin>
-                        </ComboBox>
-                     </children>
-                  </HBox>
-                  <HBox spacing="100.0">
-                     <children>
-                        <Label text="Author:" textFill="WHITE">
-                           <font>
-                              <Font name="System Bold" size="20.0" />
-                           </font>
-                        </Label>
-                        <TextField fx:id="authorTextField" prefWidth="250.0">
-                           <HBox.margin>
-                              <Insets left="22.0" />
-                           </HBox.margin>
-                        </TextField>
-                     </children>
-                  </HBox>
-                  <HBox spacing="100.0">
-                     <children>
-                        <Label text="Publisher:" textFill="WHITE">
-                           <font>
-                              <Font name="System Bold" size="20.0" />
-                           </font>
-                        </Label>
-                        <TextField fx:id="publisherTextField" prefWidth="250.0" />
-                     </children>
-                  </HBox>
-                  <HBox spacing="255.0">
-                     <children>
-                        <Button fx:id="goBackButton" mnemonicParsing="false" onAction="#goBackButtonClicked" text="Go Back">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                        </Button>
-                        <Button fx:id="searchButton" mnemonicParsing="false" onAction="#searchButtonClicked" text="Search">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                        </Button>
-                     </children>
-                  </HBox>
-                  </children>
-               </VBox>
-           </left>
          <right>
-            <TableView prefHeight="470.0" prefWidth="1324.0" BorderPane.alignment="CENTER">
+            <TableView fx:id="searchTableView" prefHeight="470.0" prefWidth="1324.0" BorderPane.alignment="CENTER">
               <columns>
                 <TableColumn prefWidth="108.0" text="ISBN Number" />
                 <TableColumn prefWidth="255.0" text="Title" />
@@ -136,6 +47,105 @@
                </BorderPane.margin>
             </TableView>
          </right>
+         <left>
+            <VBox spacing="20.0" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox spacing="65.0">
+                     <children>
+                        <Label text="ISBN Number:" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="isbnNumberTextField" prefWidth="250.0">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </TextField>
+                     </children>
+                  </HBox>
+                  <HBox spacing="115.0">
+                     <children>
+                        <Label text="Title:" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="titleTextField" prefWidth="250.0">
+                           <HBox.margin>
+                              <Insets left="47.0" />
+                           </HBox.margin>
+                        </TextField>
+                     </children>
+                  </HBox>
+                  <HBox spacing="116.0">
+                     <children>
+                        <Label text="Category:" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                        </Label>
+                        <ComboBox fx:id="categoryComboBox" onAction="#categoryComboBoxClicked" prefWidth="250.0">
+                           <HBox.margin>
+                              <Insets left="3.0" />
+                           </HBox.margin>
+                        </ComboBox>
+                     </children>
+                  </HBox>
+                  <HBox spacing="55.0">
+                     <children>
+                        <Label text="Author Name:" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="authorTextField" prefWidth="250.0">
+                           <HBox.margin>
+                              <Insets left="22.0" />
+                           </HBox.margin>
+                        </TextField>
+                     </children>
+                  </HBox>
+                  <HBox spacing="55.0">
+                     <children>
+                        <Label text="Publisher Name:" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="publisherTextField" prefWidth="250.0" />
+                     </children>
+                  </HBox>
+                  <HBox spacing="50.0">
+                     <children>
+                        <Label text="Publication Year:" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="publicationYearTextField" prefWidth="250.0" />
+                     </children>
+                  </HBox>
+                  <HBox spacing="260.0">
+                     <children>
+                        <Button fx:id="goBackButton" mnemonicParsing="false" onAction="#goBackButtonClicked" text="Go Back">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="searchButton" layoutX="10.0" layoutY="10.0" minWidth="100.0" mnemonicParsing="false" onAction="#searchButtonClicked" text="Search">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets left="50.0" top="16.0" />
+               </padding>
+            </VBox>
+         </left>
        </BorderPane>
    </children>
 </AnchorPane>

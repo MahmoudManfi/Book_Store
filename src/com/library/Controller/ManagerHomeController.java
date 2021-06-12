@@ -10,13 +10,20 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class ClientHomeController {
-
+public class ManagerHomeController {
+    public Button addABookButton;
     public Button searchForBookButton;
-    public Button shoppingCartButton;
-    public Button editPersonalButton;
+    public Button modifyABookButton;
+    public Button placeOrdersButton;
+    public Button confirmOrdersButton;
     public Button logOutButton;
 
+    public void addABookClicked(ActionEvent actionEvent) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("../View/AddNewBooks.fxml"));
+        Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        window.setScene(new Scene(root, 1206, 588));
+        window.setResizable(false);
+    }
 
     public void searchForBookClicked(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("../View/SearchForBooks.fxml"));
@@ -24,24 +31,32 @@ public class ClientHomeController {
         window.setScene(new Scene(root, 1902, 652));
         window.setResizable(false);
     }
-    public void shoppingCartButtonClicked(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("../View/Cart.fxml"));
-        Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        window.setScene(new Scene(root, 1903, 704));
-        window.setResizable(false);
-    }
 
-    public void editPersonalButtonClicked(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("../View/EditPersonalInformation.fxml"));
+    public void modifyABookClicked(ActionEvent actionEvent) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("../View/ModifyExistingBooks.fxml"));
         Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         window.setScene(new Scene(root, 1206, 588));
         window.setResizable(false);
     }
+
+    public void placeOrdersClicked(ActionEvent actionEvent) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("../View/PlaceOrderOnBooks.fxml"));
+        Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        window.setScene(new Scene(root, 1206, 588));
+        window.setResizable(false);
+    }
+
+    public void confirmOrdersClicked(ActionEvent actionEvent) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("../View/ConfirmOrdersOnBooks.fxml"));
+        Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        window.setScene(new Scene(root, 1206, 588));
+        window.setResizable(false);
+    }
+
     public void logOutButtonClicked(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("../View/sample.fxml"));
         Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         window.setScene(new Scene(root, 1206, 588));
         window.setResizable(false);
     }
-
 }

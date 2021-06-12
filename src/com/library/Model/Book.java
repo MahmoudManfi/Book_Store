@@ -1,19 +1,33 @@
 package com.library.Model;
 
 import java.time.Year;
+
 // This class could be created using a builder design pattern
 /// but I am trying to provide less overhead in the heap
 public class Book {
-    String isbn ;
-    String title ;
-    String authorName ;
-    String publisherName ;
-    Year publicationYear ;
-    Integer price ;
-    String category ;
-    Integer number_copies ;
-    Integer threshold ;
+    String isbn;
+    String title;
+    String authorName;
+    String publisherName;
+    String publicationYear;
+    Integer price;
+    String category;
+    Integer numberCopies;
+    Integer threshold;
+    public Book(){
 
+    }
+    public Book(String isbn, String title, String authorName, String publisherName, String publicationYear, Integer price, String category, Integer numberCopies, Integer threshold) {
+        this.isbn = isbn;
+        this.title = title;
+        this.authorName = authorName;
+        this.publisherName = publisherName;
+        this.publicationYear = publicationYear;
+        this.price = price;
+        this.category = category;
+        this.numberCopies = numberCopies;
+        this.threshold = threshold;
+    }
 
     public String getIsbn() {
         return isbn;
@@ -28,7 +42,8 @@ public class Book {
     }
 
     public void setTitle(String title) {
-        this.title = title;
+        if (!title.isEmpty())
+            this.title = title;
     }
 
     public String getAuthorName() {
@@ -47,11 +62,11 @@ public class Book {
         this.publisherName = publisherName;
     }
 
-    public Year getPublicationYear() {
+    public String getPublicationYear() {
         return publicationYear;
     }
 
-    public void setPublicationYear(Year publicationYear) {
+    public void setPublicationYear(String publicationYear) {
         this.publicationYear = publicationYear;
     }
 
@@ -71,12 +86,12 @@ public class Book {
         this.category = category;
     }
 
-    public Integer getNumber_copies() {
-        return number_copies;
+    public Integer getNumberCopies() {
+        return numberCopies;
     }
 
-    public void setNumber_copies(Integer number_copies) {
-        this.number_copies = number_copies;
+    public void setNumberCopies(Integer number_copies) {
+        this.numberCopies = number_copies;
     }
 
     public Integer getThreshold() {
