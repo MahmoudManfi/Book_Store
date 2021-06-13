@@ -23,6 +23,7 @@ public class ClientHomeController {
         window.setScene(new Scene(root, 1902, 652));
         window.setResizable(false);
     }
+
     public void shoppingCartButtonClicked(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("../View/Cart.fxml"));
         Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();

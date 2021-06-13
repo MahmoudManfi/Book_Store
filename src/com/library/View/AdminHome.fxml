@@ -58,19 +58,7 @@
                                 </Button>
                             </children>
                             <padding>
-                                <Insets left="500.0" />
-                            </padding>
-                        </HBox>
-                        <HBox prefHeight="100.0" prefWidth="200.0" spacing="50.0">
-                            <children>
-                                <Button fx:id="edit" minWidth="145.0" mnemonicParsing="false" onAction="#editButtonClicked" text="Edit User Information">
-                                    <font>
-                                        <Font size="30.0" />
-                                    </font>
-                                </Button>
-                            </children>
-                            <padding>
-                                <Insets left="500.0" />
+                                <Insets left="250.0" />
                             </padding>
                         </HBox>
                         <HBox prefHeight="100.0" prefWidth="200.0" spacing="50.0">
@@ -82,7 +70,7 @@
                                 </Button>
                             </children>
                             <padding>
-                                <Insets left="500.0" />
+                                <Insets left="250.0" />
                             </padding>
                         </HBox>
                     </children>

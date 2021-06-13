@@ -92,11 +92,6 @@
                               <Font size="30.0" />
                            </font>
                         </Button>
-                         <Button fx:id="goBack" minWidth="145.0" mnemonicParsing="false" onAction="#goBackButtonClicked" text="Go Back">
-                             <font>
-                                 <Font size="30.0" />
-                             </font>
-                         </Button>
                      </children>
                   </HBox>
                   </children>

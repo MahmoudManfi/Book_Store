@@ -52,7 +52,6 @@ public class WelcomingPageController{
             ex.printStackTrace();
         }
 
-
     }
 
     public void updateExistingBookHandler(ActionEvent actionEvent) throws IOException {
@@ -91,12 +90,11 @@ public class WelcomingPageController{
     }
 
     public void logOutButtonClicked(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("../View/sample.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("../View/Login.fxml"));
         LoginController.clearUser();
         Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         window.setScene(new Scene(root, 1206, 588));
         window.setResizable(false);
-        LoginController.clearAmin();
     }
 
     public void reportSalesButtonHandler(ActionEvent actionEvent) {

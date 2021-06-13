@@ -24,26 +24,10 @@ public class LoginController implements Initializable {
     public Button signInButton;
     public Label label;
     public Button signUpButton;
-    public Button goBack;
     private static User user;
-    private static boolean admin;
-
-    public static void setAdmin(){
-        admin = true;
-    }
-    public static boolean getAdmin() {
-        return admin;
-    }
-    public static void clearAmin() {
-        admin = false;
-    }
 
     public static User getUser() {
         return user;
-    }
-
-    public static void setUser(User user) {
-        LoginController.user = user;
     }
 
     public static void clearUser() {
@@ -65,9 +49,9 @@ public class LoginController implements Initializable {
 
     private void switchScene(ActionEvent actionEvent) throws IOException  {
         Parent root;
-        if (user.isManager()) {
-            root = FXMLLoader.load(getClass().getResource("../View/ManagerHome.fxml"));
-        } else {
+        if(LoginController.getUser().isManager()) {
+            root = FXMLLoader.load(getClass().getResource("../View/WelcomeManager.fxml"));
+        }else{
             root = FXMLLoader.load(getClass().getResource("../View/ClientHome.fxml"));
         }
         Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
@@ -84,13 +68,6 @@ public class LoginController implements Initializable {
 
     public void signUpButtonHandler(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("../View/SignUp.fxml"));
-        Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        window.setScene(new Scene(root, 1206, 588));
-        window.setResizable(false);
-    }
-
-    public void goBackButtonClicked(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("../View/sample.fxml"));
         Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         window.setScene(new Scene(root, 1206, 588));
         window.setResizable(false);

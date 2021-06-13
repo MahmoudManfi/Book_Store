@@ -19,44 +19,26 @@ public class AdminHome {
     public TextField username;
 
     public void promoteButtonClicked(ActionEvent actionEvent) {
-        if (loadUser()) {
-            String query = "UPDATE book_store.user SET status = 'Manager' WHERE user_name = '" + username.getText() + "'";
-            DatabaseConnector.getInstance().executeUpdate(query);
-        }
-    }
-
-
-
-    public void editButtonClicked(ActionEvent actionEvent) throws IOException {
-        if(loadUser()) {
-            Parent root = FXMLLoader.load(getClass().getResource("../View/EditPersonalInformation.fxml"));
-            Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-            window.setScene(new Scene(root, 1206, 588));
-            window.setResizable(false);
-        }
-    }
-
-    private boolean loadUser() {
-        String query = "SELECT * FROM book_store.user WHERE user_name = '" + username.getText() + "'";
-
-        List<Tuple> tuples = DatabaseConnector.getInstance().executeQuery(query, "user");
-        if (tuples.size() == 0) {
+        String query = "UPDATE book_store.user SET status = 'Manager' WHERE user_name = '" + username.getText() + "'";
+        int res = DatabaseConnector.getInstance().executeUpdate(query);
+        if (res == 0) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error in user name");
             alert.setContentText("This user name doesn't exist");
-            return false;
+            alert.showAndWait();
         } else {
-            LoginController.setUser((User)tuples.get(0));
-            return true;
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Information");
+            alert.setContentText("The user is promoted correctly");
+            alert.showAndWait();
         }
     }
 
     public void goBackButtonClicked(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("../View/WelcomeAdmin.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("../View/WelcomeManager.fxml"));
         Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         window.setScene(new Scene(root, 1206, 588));
         window.setResizable(false);
-        LoginController.clearUser();
     }
 
 }
