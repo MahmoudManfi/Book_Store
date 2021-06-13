@@ -38,13 +38,13 @@
                        <Insets right="100.0" top="15.0" />
                    </padding>
                   <children>
-                      <TextField />
-                      <TextField prefHeight="31.0" prefWidth="779.0" />
-                      <TextField minWidth="559.0" prefHeight="31.0" prefWidth="559.0" />
-                      <TextField prefHeight="31.0" prefWidth="779.0" />
-                      <TextField prefHeight="31.0" prefWidth="779.0" />
-                      <TextField prefHeight="31.0" prefWidth="779.0" />
-                      <TextField prefHeight="31.0" prefWidth="779.0" />
+                      <TextField fx:id="firstName" />
+                      <TextField fx:id="lastName" prefHeight="31.0" prefWidth="779.0" />
+                      <TextField fx:id="username" minWidth="559.0" prefHeight="31.0" prefWidth="559.0" />
+                      <PasswordField fx:id="password" prefHeight="31.0" prefWidth="779.0" />
+                      <TextField fx:id="email" prefHeight="31.0" prefWidth="779.0" />
+                      <TextField fx:id="phoneNumber" prefHeight="31.0" prefWidth="779.0" />
+                      <TextField fx:id="shippingAddress" prefHeight="31.0" prefWidth="779.0" />
                   </children>
                </VBox>
            </right>

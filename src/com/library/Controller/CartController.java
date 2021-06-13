@@ -58,6 +58,7 @@ public class CartController implements Initializable {
     }
 
     public void checkoutButtonClicked(ActionEvent actionEvent) {
+
     }
 
     public void goHomeButtonClicked(ActionEvent actionEvent) throws IOException {

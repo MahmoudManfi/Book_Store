@@ -37,6 +37,12 @@ public class DatabaseConnector {
         System.err.println(e.getMessage());
     }
 
+    private void doneSuccessfully() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setContentText("done successfully!");
+        alert.showAndWait();
+    }
+
     public List<Tuple> executeQuery(String query, String tableName) {
         FactoryTable factoryTable = new FactoryTable();
         List<Tuple> result = new ArrayList<>();
@@ -53,6 +59,7 @@ public class DatabaseConnector {
                     tuple.build(resultSet);
                     result.add(tuple);
                 }
+                doneSuccessfully();
             } catch (Exception e) {
                 printException(e);
             }
@@ -64,13 +71,15 @@ public class DatabaseConnector {
     }
 
     // update or insert
-    public void executeUpdate(String query) {
+    public int executeUpdate(String query) {
+        int ret = 0;
         try {
             Connection connection = DriverManager.getConnection(myUrl, "root", password);
             try {
                 Statement statement = connection.createStatement();
                 System.err.println("We are in execute update and going to implement" + query);
-                int ret = statement.executeUpdate(query);
+                ret = statement.executeUpdate(query);
+                doneSuccessfully();
                 System.out.println("UpdateQuery done successfully!! and reuturned  " + ret);
             } catch (Exception e) {
                 printException(e);
@@ -79,6 +88,7 @@ public class DatabaseConnector {
         } catch (Exception e) {
             printException(e);
         }
+        return ret;
     }
 
 

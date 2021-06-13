@@ -22,7 +22,7 @@ public class SignUpController {
     public PasswordField password;
     public TextField email;
     public TextField phoneNumber;
-    public TextField sharingAddress;
+    public TextField shippingAddress;
 
     public void goBackButtonClicked(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("../View/sample.fxml"));
@@ -37,7 +37,7 @@ public class SignUpController {
                 username.getText() + "', '" + password.getText() + "', '" +
                 lastName.getText() + "', '" + firstName.getText() + "', '" +
                 email.getText() + "', '" + phoneNumber.getText() + "', '" +
-                sharingAddress.getText() + "', 'Client')";
+                shippingAddress.getText() + "', 'Client')";
 
         DatabaseConnector databaseConnector = DatabaseConnector.getInstance();
         databaseConnector.executeUpdate(query);

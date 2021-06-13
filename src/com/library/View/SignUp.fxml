@@ -44,7 +44,7 @@
                         <PasswordField fx:id="password" prefHeight="31.0" prefWidth="779.0" />
                         <TextField fx:id="email" prefHeight="31.0" prefWidth="779.0" />
                         <TextField fx:id="phoneNumber" prefHeight="31.0" prefWidth="779.0" />
-                        <TextField fx:id="sharingAddress" prefHeight="31.0" prefWidth="779.0" />
+                        <TextField fx:id="shippingAddress" prefHeight="31.0" prefWidth="779.0" />
                     </children>
                 </VBox>
             </right>

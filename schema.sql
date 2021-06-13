@@ -60,7 +60,7 @@ AFTER UPDATE ON book_store.book
 FOR EACH ROW
 BEGIN
 	IF NEW.number_copies < OLD.threshold THEN
-		SIGNAL SQLSTATE '01000'
+		SIGNAL SQLSTATE '03000'
         SET MESSAGE_TEXT = 'Number of copies is less than the threshold',
         MYSQL_ERRNO = 1000;
 	END IF;
