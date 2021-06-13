@@ -3,4 +3,7 @@
 out
 *.iml
 output
+book_sales_results.pdf
+top_10_books_report.pdf
+top_customers_results.pdf
 .gitignore
