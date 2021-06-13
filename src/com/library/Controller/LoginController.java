@@ -5,6 +5,7 @@ import com.library.Model.databaseTables.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -12,19 +13,37 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.List;
 import java.util.Optional;
+import java.util.ResourceBundle;
 
-public class LoginController {
+public class LoginController implements Initializable {
     public TextField usernameTextField;
     public PasswordField passwordTextField;
     public Button signInButton;
     public Label label;
     public Button signUpButton;
+    public Button goBack;
     private static User user;
+    private static boolean admin;
+
+    public static void setAdmin(){
+        admin = true;
+    }
+    public static boolean getAdmin() {
+        return admin;
+    }
+    public static void clearAmin() {
+        admin = false;
+    }
 
     public static User getUser() {
         return user;
+    }
+
+    public static void setUser(User user) {
+        LoginController.user = user;
     }
 
     public static void clearUser() {
@@ -47,7 +66,7 @@ public class LoginController {
     private void switchScene(ActionEvent actionEvent) throws IOException  {
         Parent root;
         if (user.isManager()) {
-            root = FXMLLoader.load(getClass().getResource("../View/WelcomeAdmin.fxml"));
+            root = FXMLLoader.load(getClass().getResource("../View/ManagerHome.fxml"));
         } else {
             root = FXMLLoader.load(getClass().getResource("../View/ClientHome.fxml"));
         }
@@ -68,5 +87,17 @@ public class LoginController {
         Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         window.setScene(new Scene(root, 1206, 588));
         window.setResizable(false);
+    }
+
+    public void goBackButtonClicked(ActionEvent actionEvent) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("../View/sample.fxml"));
+        Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        window.setScene(new Scene(root, 1206, 588));
+        window.setResizable(false);
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        clearUser();
     }
 }

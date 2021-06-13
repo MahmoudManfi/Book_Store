@@ -72,12 +72,14 @@ public class SearchForBooksController implements Initializable {
 
     public void goBackButtonClicked(ActionEvent actionEvent) throws IOException {
         Parent root;
-        if(LoginController.getUser().isManager()) {
+        if (LoginController.getAdmin()) {
             root = FXMLLoader.load(getClass().getResource("../View/WelcomeAdmin.fxml"));
-        }else {
+        } else if(LoginController.getUser().isManager()) {
+            root = FXMLLoader.load(getClass().getResource("../View/ManagerHome.fxml"));
+        }else{
             root = FXMLLoader.load(getClass().getResource("../View/ClientHome.fxml"));
         }
-        Stage window = (Stage) goBackButton.getScene().getWindow();
+        Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         window.setScene(new Scene(root, 1206, 588));
         window.setResizable(false);
     }

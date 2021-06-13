@@ -1,5 +1,7 @@
 package com.library.Controller;
 
+import com.library.Model.databaseTables.Tuple;
+import com.library.Model.databaseTables.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -7,15 +9,20 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import service.ReportGenerator;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
-public class WelcomingPageController {
+public class WelcomingPageController{
     @FXML
     public Button searchForBookButton;
     @FXML
@@ -55,8 +62,11 @@ public class WelcomingPageController {
         window.setResizable(false);
     }
 
-
-    public void PromoteCustomerButtonHandler(ActionEvent actionEvent) {
+    public void PromoteCustomerButtonHandler(ActionEvent actionEvent) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("../View/AdminHome.fxml"));
+        Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        window.setScene(new Scene(root, 1206, 588));
+        window.setResizable(false);
     }
 
     public void searchForBookClicked(ActionEvent actionEvent) throws IOException {
@@ -65,6 +75,7 @@ public class WelcomingPageController {
         window.setScene(new Scene(root, 1900, 596));
         window.setResizable(false);
     }
+
     public void shoppingCartButtonClicked(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("../View/Cart.fxml"));
         Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
@@ -78,16 +89,19 @@ public class WelcomingPageController {
         window.setScene(new Scene(root, 1206, 588));
         window.setResizable(false);
     }
+
     public void logOutButtonClicked(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("../View/login.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("../View/sample.fxml"));
         LoginController.clearUser();
         Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         window.setScene(new Scene(root, 1206, 588));
         window.setResizable(false);
+        LoginController.clearAmin();
     }
 
     public void reportSalesButtonHandler(ActionEvent actionEvent) {
         ReportGenerator reportGenerator = new ReportGenerator() ;
         reportGenerator.generateAllReports(); // :)
     }
+
 }

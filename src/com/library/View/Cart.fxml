@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
 <?import javafx.geometry.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="609.0" prefWidth="1446.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.library.Controller.CartController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="609.0" prefWidth="1446.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.library.Controller.CartController">
    <children>
        <VBox prefHeight="200.0" prefWidth="100.0">
           <children>
@@ -75,24 +71,19 @@
                </opaqueInsets>
             </HBox>
          </bottom>
-         <center>
-            <TableView fx:id="cartTbableView" minWidth="1350.0" onMouseClicked="#tableViewHandler" prefHeight="351.0" prefWidth="1350.0" BorderPane.alignment="CENTER">
-              <columns>
-                <TableColumn prefWidth="108.0" text="ISBN Number" />
-                <TableColumn prefWidth="296.0" text="Title" />
-                  <TableColumn prefWidth="221.0" text="Author Name" />
-                  <TableColumn prefWidth="232.0" text="Publisher Name" />
-                  <TableColumn minWidth="0.0" prefWidth="171.0" text="Publication Year" />
-                  <TableColumn minWidth="0.0" prefWidth="131.0" text="Price" />
-                  <TableColumn prefWidth="190.0" text="Category" />
-                  <TableColumn minWidth="0.0" prefWidth="0.0" text="Number Of Copies" />
-                  <TableColumn minWidth="0.0" prefWidth="0.0" text="Threshold" />
-              </columns>
-               <BorderPane.margin>
-                  <Insets bottom="50.0" left="50.0" right="50.0" top="15.0" />
-               </BorderPane.margin>
-            </TableView>
-         </center>
        </BorderPane>
+      <TableView fx:id="cartTbableView" layoutX="-837.0" layoutY="-29.0" minWidth="1350.0" onMouseClicked="#tableViewHandler" prefHeight="351.0" prefWidth="1350.0">
+        <columns>
+          <TableColumn prefWidth="108.0" text="ISBN Number" />
+          <TableColumn prefWidth="296.0" text="Title" />
+            <TableColumn prefWidth="221.0" text="Author Name" />
+            <TableColumn prefWidth="232.0" text="Publisher Name" />
+            <TableColumn minWidth="0.0" prefWidth="171.0" text="Publication Year" />
+            <TableColumn minWidth="0.0" prefWidth="131.0" text="Price" />
+            <TableColumn prefWidth="190.0" text="Category" />
+            <TableColumn minWidth="0.0" prefWidth="0.0" text="Number Of Copies" />
+            <TableColumn minWidth="0.0" prefWidth="0.0" text="Threshold" />
+        </columns>
+      </TableView>
    </children>
 </AnchorPane>

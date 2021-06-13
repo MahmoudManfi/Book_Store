@@ -41,11 +41,23 @@
                         <Font size="30.0" />
                      </font>
                   </Button>
-                  <Button fx:id="managerButton" mnemonicParsing="false" onAction="#managerButtonHandler" style="-fx-background-image: url('../img/background2.jpg');" text="Manager">
-                     <font>
-                        <Font size="30.0" />
-                     </font>
-                  </Button>
+                  <HBox prefHeight="100.0" prefWidth="200.0" spacing="50.0">
+                     <Label text="Admin Password?" textFill="WHITE">
+                        <font>
+                           <Font name="Agency FB" size="50.0" />
+                        </font>
+                     </Label>
+                     <PasswordField fx:id="password" maxWidth="570.0" prefHeight="60.0" prefWidth="200.0">
+                        <font>
+                           <Font size="30.0" />
+                        </font>
+                     </PasswordField>
+                     <Button fx:id="AdminButton" mnemonicParsing="false" onAction="#adminButtonHandler" style="-fx-background-image: url('../img/background2.jpg');" text="Admin">
+                        <font>
+                           <Font size="30.0" />
+                        </font>
+                     </Button>
+                  </HBox>
                   <Label text="New User? " textFill="WHITE">
                      <font>
                         <Font name="Agency FB" size="50.0" />

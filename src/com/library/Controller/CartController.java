@@ -63,8 +63,10 @@ public class CartController implements Initializable {
 
     public void goHomeButtonClicked(ActionEvent actionEvent) throws IOException {
         Parent root;
-        if(LoginController.getUser().isManager()) {
+        if (LoginController.getAdmin()) {
             root = FXMLLoader.load(getClass().getResource("../View/WelcomeAdmin.fxml"));
+        } else if(LoginController.getUser().isManager()) {
+            root = FXMLLoader.load(getClass().getResource("../View/ManagerHome.fxml"));
         }else{
             root = FXMLLoader.load(getClass().getResource("../View/ClientHome.fxml"));
         }

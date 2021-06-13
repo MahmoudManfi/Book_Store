@@ -39,7 +39,7 @@ public class DatabaseConnector {
 
     private void doneSuccessfully() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setContentText("done successfully!");
+        alert.setContentText("Done Successfully!");
         alert.showAndWait();
     }
 

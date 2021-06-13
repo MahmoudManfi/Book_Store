@@ -29,8 +29,10 @@ public class EditPersonalInformationController implements Initializable {
 
     public void goBackButtonClicked(ActionEvent actionEvent) throws IOException {
         Parent root;
-        if(LoginController.getUser().isManager()) {
+        if (LoginController.getAdmin()) {
             root = FXMLLoader.load(getClass().getResource("../View/WelcomeAdmin.fxml"));
+        } else if(LoginController.getUser().isManager()) {
+            root = FXMLLoader.load(getClass().getResource("../View/ManagerHome.fxml"));
         }else{
             root = FXMLLoader.load(getClass().getResource("../View/ClientHome.fxml"));
         }

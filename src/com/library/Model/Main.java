@@ -15,7 +15,7 @@ public class Main extends Application{
     public void start(Stage primaryStage) throws Exception {
 
 //        Parent root = FXMLLoader.load(getClass().getResource("../View/Login.fxml"));
-        Parent root = FXMLLoader.load(getClass().getResource("../View/login.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("../View/sample.fxml"));
         primaryStage.setTitle("BOOK STORE");
         primaryStage.setScene(new Scene(root, 1206, 588));
         primaryStage.setResizable(false);
