@@ -29,7 +29,7 @@ public class PublisherOrder {
     private void showConfirmAlert(String publisherName, String bookTitle, int numberCopies){
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation Order from " + publisherName);
-        alert.setContentText("Book book: " + bookTitle + "\n" + "Quantity: " + numberCopies);
+        alert.setContentText("Book title: " + bookTitle + "\n" + "Quantity: " + numberCopies);
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK) {
             deleteOrder();

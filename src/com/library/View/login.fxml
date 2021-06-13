@@ -56,11 +56,11 @@
                               <Font name="Agency FB" size="50.0" />
                            </font>
                         </Label>
-                            <TextField fx:id="passwordTextField" maxWidth="570.0" prefHeight="60.0" prefWidth="570.0">
+                            <PasswordField fx:id="passwordTextField" maxWidth="570.0" prefHeight="60.0" prefWidth="570.0">
                                 <font>
                                     <Font size="30.0" />
                                 </font>
-                            </TextField>
+                            </PasswordField>
                      </children>
                   </HBox>
                   <HBox prefHeight="100.0" prefWidth="200.0" spacing="50.0">

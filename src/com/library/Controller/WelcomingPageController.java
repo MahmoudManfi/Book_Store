@@ -1,6 +1,5 @@
 package com.library.Controller;
 
-import com.library.Model.databaseTables.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -30,7 +29,6 @@ public class WelcomingPageController {
     private Button addNewBookButton;
     @FXML
     private Button updateBookButton;
-    private User user;
 
     @FXML
     public void addNewBookHandler(ActionEvent e) {

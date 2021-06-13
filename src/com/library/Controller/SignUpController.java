@@ -23,5 +23,8 @@ public class SignUpController {
     }
 
     public void signUpButtonClicked(ActionEvent actionEvent) {
+
+
+
     }
 }
