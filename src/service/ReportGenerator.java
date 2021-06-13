@@ -11,8 +11,12 @@ import java.util.*;
 
 
 public class ReportGenerator {
-
-    public void generateBookSalesReport() {
+    public void generateAllReports(){
+        generateBookSalesReport();
+        generateTopCustomersReport();
+        generateTopSaledBooks();
+    }
+    private void generateBookSalesReport() {
         File file = new File("src/service/book_sales.jrxml");
         try {
             List<BookSalesEntity> books = getBookSales();
@@ -27,7 +31,7 @@ public class ReportGenerator {
         }
     }
 
-    public void generateTopSaledBooks() {
+    private void generateTopSaledBooks() {
         File file = new File("src/service/book_sales.jrxml");
         try {
             List<BookSalesEntity> books = getTopSaledBooks();
@@ -42,7 +46,7 @@ public class ReportGenerator {
         }
     }
 
-    public void generateTopCustomersReport() {
+    private void generateTopCustomersReport() {
         File file = new File("src/service/top_customers.jrxml");
         try {
             List<TopCustomerEntity> books = getTopCustomers();
@@ -120,20 +124,20 @@ public class ReportGenerator {
         return results;
     }
 
-    public static void main(String[] args) {
-        ReportGenerator reportGenerator = new ReportGenerator();
-        List<BookSalesEntity> res = reportGenerator.getTopSaledBooks();
-        for (int i = 0; i < res.size(); i++) {
-            System.out.println(res.get(i).toString());
-        }
-        reportGenerator.generateTopSaledBooks();
-//        List<TopCustomerEntity> res = reportGenerator.getTopCustomers();
+//    public static void main(String[] args) {
+//        ReportGenerator reportGenerator = new ReportGenerator();
+//        List<BookSalesEntity> res = reportGenerator.getTopSaledBooks();
 //        for (int i = 0; i < res.size(); i++) {
 //            System.out.println(res.get(i).toString());
 //        }
-//        reportGenerator.generateTopCustomersReport();
-
-
-    }
+//        reportGenerator.generateTopSaledBooks();
+////        List<TopCustomerEntity> res = reportGenerator.getTopCustomers();
+////        for (int i = 0; i < res.size(); i++) {
+////            System.out.println(res.get(i).toString());
+////        }
+////        reportGenerator.generateTopCustomersReport();
+//
+//
+//    }
 
 }

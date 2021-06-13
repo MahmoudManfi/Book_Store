@@ -88,7 +88,6 @@ public class WelcomingPageController {
 
     public void reportSalesButtonHandler(ActionEvent actionEvent) {
         ReportGenerator reportGenerator = new ReportGenerator() ;
-        reportGenerator.generateBookSalesReport();
-        reportGenerator.generateTopCustomersReport();
+        reportGenerator.generateAllReports(); // :)
     }
 }
