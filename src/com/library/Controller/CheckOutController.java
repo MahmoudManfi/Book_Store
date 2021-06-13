@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -27,10 +28,18 @@ public class CheckOutController {
         for(Book book: LoginController.getUser().getCart()) {
             if (updateBook(book)) {
                 addSoldBook(book);
+                alert();
             }
         }
 
         switchScene(actionEvent);
+    }
+
+    private void alert() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Information");
+        alert.setContentText("We are happy to serve you, my dear");
+        alert.showAndWait();
     }
 
     private boolean updateBook(Book book) {
@@ -40,7 +49,7 @@ public class CheckOutController {
         int ret = DatabaseConnector.getInstance().executeUpdate(query);
         if (ret > 0) book.setNumberCopies(book.getNumberCopies() - 1);
 
-        if (!book.validate()) {
+        if (!book.validate() && ret > 0) {
             PublisherOrder publisherOrder = new PublisherOrder();
             publisherOrder.takeAction(book.getIsbn(), book.getPublisherName(),
                     book.getTitle(), book.getThreshold() - book.getNumberCopies());
