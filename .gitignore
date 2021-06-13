@@ -2,7 +2,5 @@
 .git
 out
 *.iml
+output
 .gitignore
-sample/
-out/
-jars/

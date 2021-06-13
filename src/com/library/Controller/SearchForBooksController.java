@@ -1,5 +1,6 @@
 package com.library.Controller;
 
+import com.library.Model.PublisherOrder;
 import com.library.Model.databaseTables.Book;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -28,7 +29,7 @@ public class SearchForBooksController implements Initializable {
     public Button addToCartButton;
     public Button modifyButton;
     ObservableList<String> options =
-            FXCollections.observableArrayList("Science", "Art", "Religion","History", "Geography");
+            FXCollections.observableArrayList("Science", "Art", "Religion", "History", "Geography");
     public TextField isbnNumberTextField;
     public TextField titleTextField;
     @FXML
@@ -46,7 +47,7 @@ public class SearchForBooksController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        ObservableList<TableColumn<Book, String>> tableColumns= searchTableView.getColumns();
+        ObservableList<TableColumn<Book, String>> tableColumns = searchTableView.getColumns();
         tableColumns.get(0).setCellValueFactory(new PropertyValueFactory<>("isbn"));
         tableColumns.get(1).setCellValueFactory(new PropertyValueFactory<>("title"));
         tableColumns.get(2).setCellValueFactory(new PropertyValueFactory<>("authorName"));
@@ -76,7 +77,7 @@ public class SearchForBooksController implements Initializable {
         try {
             newBook = extractBookFields();
             List<Book> resultBooks = DatabaseConnector.getInstance().searchForBooks(newBook);
-            for(Book book:resultBooks){
+            for (Book book : resultBooks) {
                 searchTableView.getItems().add(new Book(book.getIsbn(), book.getTitle(), book.getAuthorName(),
                         book.getPublisherName(), book.getPublicationYear(), book.getPrice(), book.getCategory(),
                         book.getNumberCopies(), book.getThreshold()));
@@ -92,6 +93,7 @@ public class SearchForBooksController implements Initializable {
             alert.showAndWait();
         }
     }
+
     Book extractBookFields() throws NullPointerException {
         Book book = new Book();
         book.setIsbn(isbnNumberTextField.getText().trim());
@@ -114,11 +116,15 @@ public class SearchForBooksController implements Initializable {
     public void modifyButtonHandler(ActionEvent actionEvent) {
         System.out.println("Updating existing book in progress....");
         Book newBook;
-        newBook = generateFromLabels();
-        selectionModel = searchTableView.getSelectionModel();
-        Book selectBook = (Book)selectionModel.getSelectedItem();
         try{
+            newBook = generateFromLabels();
+            selectionModel = searchTableView.getSelectionModel();
+            Book selectBook = (Book)selectionModel.getSelectedItem();
             DatabaseConnector.getInstance().updateBook(newBook);
+            if (!newBook.validate()) {
+                PublisherOrder publisherOrder = new PublisherOrder();
+                publisherOrder.takeAction(newBook.getIsbn(), newBook.getPublisherName(), newBook.getTitle(), newBook.getThreshold() - newBook.getNumberCopies());
+            }
             List<Book> resultBooks = DatabaseConnector.getInstance().searchForBooks(newBook);
             for(Book book:resultBooks){
                 searchTableView.getItems().add(new Book(book.getIsbn(), book.getTitle(), book.getAuthorName(),

@@ -15,9 +15,11 @@ public class Book implements Tuple {
     String category;
     Integer numberCopies;
     Integer threshold;
-    public Book(){
+
+    public Book() {
 
     }
+
     public Book(String isbn, String title, String authorName, String publisherName, String publicationYear, Integer price, String category, Integer numberCopies, Integer threshold) {
         this.isbn = isbn;
         this.title = title;
@@ -114,5 +116,13 @@ public class Book implements Tuple {
         setCategory(resultSet.getString(7));
         setNumberCopies(resultSet.getInt(8));
         setThreshold(resultSet.getInt(9));
+    }
+
+    public Boolean validate() {
+        Boolean valid = true;
+        if (threshold > numberCopies) {
+            valid = false;
+        }
+        return valid;
     }
 }
