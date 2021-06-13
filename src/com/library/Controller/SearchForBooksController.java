@@ -2,7 +2,6 @@ package com.library.Controller;
 
 import com.library.Model.PublisherOrder;
 import com.library.Model.databaseTables.Book;
-import com.library.Model.databaseTables.CartItem;
 import com.library.Model.databaseTables.Tuple;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -65,17 +64,12 @@ public class SearchForBooksController implements Initializable {
 
         categoryComboBox.getItems().addAll(options);
         addToCartButton.setDisable(true);
-        if(LoginController.getUser().isManager()) {
-            modifyButton.setDisable(true);
-        }
     }
 
     public void goBackButtonClicked(ActionEvent actionEvent) throws IOException {
         Parent root;
-        if (LoginController.getAdmin()) {
-            root = FXMLLoader.load(getClass().getResource("../View/WelcomeAdmin.fxml"));
-        } else if(LoginController.getUser().isManager()) {
-            root = FXMLLoader.load(getClass().getResource("../View/ManagerHome.fxml"));
+        if(LoginController.getUser().isManager()) {
+            root = FXMLLoader.load(getClass().getResource("../View/WelcomeManager.fxml"));
         }else{
             root = FXMLLoader.load(getClass().getResource("../View/ClientHome.fxml"));
         }
