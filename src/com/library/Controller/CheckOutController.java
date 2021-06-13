@@ -33,6 +33,7 @@ public class CheckOutController {
         }
 
         switchScene(actionEvent);
+        LoginController.getUser().getCart().clear();
     }
 
     private void alert() {

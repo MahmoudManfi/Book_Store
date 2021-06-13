@@ -36,6 +36,7 @@ public class User implements Tuple {
         this.totalBookPrice+= book.getPrice();
     }
 
+
     public void removeFromCart(Book book) {
         this.cartBooks.remove(book);
         this.totalBookPrice-= book.getPrice();
