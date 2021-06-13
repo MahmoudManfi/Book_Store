@@ -11,6 +11,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -20,8 +21,7 @@ import java.util.ResourceBundle;
 
 public class SearchForBooksController implements Initializable {
     public TableView searchTableView;
-    TableView.TableViewSelectionModel<Book> selectionModel;
-
+    public TableView.TableViewSelectionModel selectionModel;
     public TextField priceTextField;
     public TextField numOfCopiesTextField;
     public TextField thresholdTextField;
@@ -58,7 +58,7 @@ public class SearchForBooksController implements Initializable {
         tableColumns.get(8).setCellValueFactory(new PropertyValueFactory<>("threshold"));
 
         categoryComboBox.getItems().addAll(options);
-        //addToCartButton.setDisable(true);
+        addToCartButton.setDisable(true);
         //modifyButton.setDisable(true);
     }
 
@@ -115,10 +115,16 @@ public class SearchForBooksController implements Initializable {
         System.out.println("Updating existing book in progress....");
         Book newBook;
         newBook = generateFromLabels();
-        ObservableList<Book> selectedItems = selectionModel.getSelectedItems();
-        selectedItems = (ObservableList<Book>) newBook;
+        selectionModel = searchTableView.getSelectionModel();
+        Book selectBook = (Book)selectionModel.getSelectedItem();
         try{
             DatabaseConnector.getInstance().updateBook(newBook);
+            List<Book> resultBooks = DatabaseConnector.getInstance().searchForBooks(newBook);
+            for(Book book:resultBooks){
+                searchTableView.getItems().add(new Book(book.getIsbn(), book.getTitle(), book.getAuthorName(),
+                        book.getPublisherName(), book.getPublicationYear(), book.getPrice(), book.getCategory(),
+                        book.getNumberCopies(), book.getThreshold()));
+            }
         } catch (RuntimeException exception) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Wrong Input");
@@ -140,5 +146,27 @@ public class SearchForBooksController implements Initializable {
         book.setPrice(Integer.valueOf(priceTextField.getText().trim()));
         book.setThreshold(Integer.valueOf(thresholdTextField.getText().trim()));
         return book;
+    }
+
+    public void tableViewHandler(MouseEvent mouseEvent) {
+        selectionModel = searchTableView.getSelectionModel();
+        Book selectBook = (Book)selectionModel.getSelectedItem();
+        if(selectBook!=null){
+            updateTextFields(selectBook);
+            addToCartButton.setDisable(false);
+        }else{
+            addToCartButton.setDisable(true);
+        }
+    }
+    private void updateTextFields(Book book){
+        isbnNumberTextField.setText(book.getIsbn());
+        titleTextField.setText(book.getTitle());
+        authorTextField.setText(book.getAuthorName());
+        publicationYearTextField.setText(book.getPublicationYear());
+        categoryComboBox.setValue(book.getCategory());
+        numOfCopiesTextField.setText(String.valueOf(book.getNumberCopies()));
+        publisherNameTextField.setText(book.getPublisherName());
+        priceTextField.setText(String.valueOf(book.getPrice()));
+        thresholdTextField.setText(String.valueOf(book.getThreshold()));
     }
 }
