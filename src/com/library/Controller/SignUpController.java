@@ -7,6 +7,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -15,13 +16,13 @@ import java.io.IOException;
 public class SignUpController {
     public Button goBackButton;
     public Button signUpButton;
-    public TextField firstNameTextField;
-    public TextField lastNameTextField;
-    public TextField usernameTextField;
-    public TextField passwordTextField;
-    public TextField emailTextField;
-    public TextField phineNumberTextField;
-    public TextField sharingAddressTextField;
+    public TextField firstName;
+    public TextField lastName;
+    public TextField username;
+    public PasswordField password;
+    public TextField email;
+    public TextField phoneNumber;
+    public TextField sharingAddress;
 
     public void goBackButtonClicked(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("../View/sample.fxml"));
@@ -30,9 +31,20 @@ public class SignUpController {
         window.setResizable(false);
     }
 
-    public void signUpButtonClicked(ActionEvent actionEvent) {
+    public void signUpButtonClicked(ActionEvent actionEvent) throws IOException {
 
+        String query = "INSERT INTO book_store.user VALUES ('" +
+                username.getText() + "', '" + password.getText() + "', '" +
+                lastName.getText() + "', '" + firstName.getText() + "', '" +
+                email.getText() + "', '" + phoneNumber.getText() + "', '" +
+                sharingAddress.getText() + "', 'Client')";
 
+        DatabaseConnector databaseConnector = DatabaseConnector.getInstance();
+        databaseConnector.executeUpdate(query);
 
+        Parent root = FXMLLoader.load(getClass().getResource("../View/login.fxml"));
+        Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        window.setScene(new Scene(root, 1206, 588));
+        window.setResizable(false);
     }
 }
