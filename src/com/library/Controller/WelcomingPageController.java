@@ -9,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import service.ReportGenerator;
 
 import java.io.IOException;
 import java.net.URL;
@@ -86,5 +87,8 @@ public class WelcomingPageController {
     }
 
     public void reportSalesButtonHandler(ActionEvent actionEvent) {
+        ReportGenerator reportGenerator = new ReportGenerator() ;
+        reportGenerator.generateBookSalesReport();
+        reportGenerator.generateTopCustomersReport();
     }
 }

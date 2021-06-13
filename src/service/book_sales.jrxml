@@ -70,7 +70,7 @@
             <line>
                 <reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1" uuid="6bfbd201-fe61-458b-8c16-2e8c494c6c5c"/>
             </line>
-            <textField textAdjust="StretchHeight">
+            <textField>
                 <reportElement x="0" y="0" width="277" height="20" uuid="c1ad3586-af14-4d8d-86de-5ea2ae4bc970">
                     <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="08eb2378-3db4-4e96-bde7-93070e539209"/>
                 </reportElement>
@@ -79,7 +79,7 @@
                 </textElement>
                 <textFieldExpression><![CDATA[$F{bookTitle}]]></textFieldExpression>
             </textField>
-            <textField textAdjust="StretchHeight">
+            <textField >
                 <reportElement x="277" y="0" width="277" height="20" uuid="a1ab5a1a-b132-4237-b088-619cd3ac9fb7">
                     <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="cd018316-adcf-4b95-86c2-4384cb9817fc"/>
                 </reportElement>

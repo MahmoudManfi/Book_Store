@@ -44,16 +44,16 @@ public class DatabaseConnector {
             Connection connection = DriverManager.getConnection(myUrl, "root", password);
             try {
                 Statement statement = connection.createStatement();
-                System.err.println("We are in execute query and going to implement" + query) ;
+                System.err.println("We are in execute query and going to implement" + query);
                 ResultSet resultSet = statement.executeQuery(query);
                 System.out.println("ExecuteQuery done successfully !! ");
 
-                while(resultSet.next()) {
+                while (resultSet.next()) {
                     Tuple tuple = factoryTable.getTable(tableName);
                     tuple.build(resultSet);
                     result.add(tuple);
                 }
-            }catch (Exception e) {
+            } catch (Exception e) {
                 printException(e);
             }
             connection.close();
@@ -69,10 +69,10 @@ public class DatabaseConnector {
             Connection connection = DriverManager.getConnection(myUrl, "root", password);
             try {
                 Statement statement = connection.createStatement();
-                System.err.println("We are in execute update and going to implement" + query) ;
+                System.err.println("We are in execute update and going to implement" + query);
                 int ret = statement.executeUpdate(query);
-                System.out.println("UpdateQuery done successfully!! and reuturned  " + ret );
-            }catch (Exception e) {
+                System.out.println("UpdateQuery done successfully!! and reuturned  " + ret);
+            } catch (Exception e) {
                 printException(e);
             }
             connection.close();
@@ -92,9 +92,36 @@ public class DatabaseConnector {
         executeUpdate(query);
     }
 
+    public List<List<String>> implementAdvancedSelect(String query, int columns) {
+        List<List<String>> result = new ArrayList<>();
+        ResultSet resultSet ;
+        try {
+            Connection connection = DriverManager.getConnection(myUrl, "root", password);
+            try {
+                Statement statement = connection.createStatement();
+                System.err.println("We are in advanced execute query and going to implement" + query);
+                resultSet = statement.executeQuery(query);
+                while (resultSet.next()) {
+                    List<String> row = new ArrayList<>();
+                    for(int i=1;i<=columns;i++){
+                        row.add(resultSet.getString(i)) ;
+                    }
+                    result.add(row) ;
+                }
+                System.out.println("Execute advanced  Query done successfully !! ");
+
+            } catch (Exception e) {
+                printException(e);
+            }
+        } catch (Exception e) {
+            printException(e);
+        }
+        return result;
+    }
+
     List<Tuple> searchForBooks(Book book) {
         String query = generateSearchedBooks(book);
-        List<Tuple> result =  executeQuery(query, "book");
+        List<Tuple> result = executeQuery(query, "book");
 //        List<Book> result = new ArrayList<>();
 //        try {
 //            Connection connection;
@@ -210,8 +237,6 @@ public class DatabaseConnector {
         System.err.println("Search Query: " + query);
         return query;
     }
-
-
 
     // Note : if we update a book with non-existing ISBN, the database will not give us any feedback
     // Should we inform the user if there are no records mathcing his update query

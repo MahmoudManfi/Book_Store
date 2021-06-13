@@ -28,4 +28,11 @@ public class BookSalesEntity {
         this.numberOfSales = numberOfSales;
     }
 
+    @Override
+    public String toString() {
+        return "BookSalesEntity{" +
+                "bookTitle='" + bookTitle + '\'' +
+                ", numberOfSales=" + numberOfSales +
+                '}';
+    }
 }
