@@ -2,12 +2,15 @@ package com.library.Controller;
 
 import com.library.Model.PublisherOrder;
 import com.library.Model.databaseTables.Book;
+import com.library.Model.databaseTables.CartItem;
+import com.library.Model.databaseTables.Tuple;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -28,6 +31,8 @@ public class SearchForBooksController implements Initializable {
     public TextField thresholdTextField;
     public Button addToCartButton;
     public Button modifyButton;
+    public Button goToCartButton;
+    public Button clearButton;
     ObservableList<String> options =
             FXCollections.observableArrayList("Science", "Art", "Religion", "History", "Geography");
     public TextField isbnNumberTextField;
@@ -60,11 +65,18 @@ public class SearchForBooksController implements Initializable {
 
         categoryComboBox.getItems().addAll(options);
         addToCartButton.setDisable(true);
-        //modifyButton.setDisable(true);
+        if(LoginController.getUser().isManager()) {
+            modifyButton.setDisable(true);
+        }
     }
 
     public void goBackButtonClicked(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("../View/ClientHome.fxml"));
+        Parent root;
+        if(LoginController.getUser().isManager()) {
+            root = FXMLLoader.load(getClass().getResource("../View/WelcomeAdmin.fxml"));
+        }else {
+            root = FXMLLoader.load(getClass().getResource("../View/ClientHome.fxml"));
+        }
         Stage window = (Stage) goBackButton.getScene().getWindow();
         window.setScene(new Scene(root, 1206, 588));
         window.setResizable(false);
@@ -73,14 +85,21 @@ public class SearchForBooksController implements Initializable {
     public void searchButtonClicked(ActionEvent actionEvent) {
         searchTableView.getItems().clear();
         System.out.println("Searching for books in progress....");
-        Book newBook = null;
+        Book newBook;
         try {
             newBook = extractBookFields();
-            List<Book> resultBooks = DatabaseConnector.getInstance().searchForBooks(newBook);
-            for (Book book : resultBooks) {
+            List<Tuple> resultBooks = DatabaseConnector.getInstance().searchForBooks(newBook);
+            for (Tuple tuple : resultBooks) {
+                Book book = (Book)tuple;
                 searchTableView.getItems().add(new Book(book.getIsbn(), book.getTitle(), book.getAuthorName(),
                         book.getPublisherName(), book.getPublicationYear(), book.getPrice(), book.getCategory(),
                         book.getNumberCopies(), book.getThreshold()));
+            }
+            if(searchTableView.getItems().size()>0){
+                addToCartButton.setDisable(false);
+                if(LoginController.getUser().isManager()) {
+                    modifyButton.setDisable(false);
+                }
             }
         } catch (NullPointerException exception) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -93,24 +112,16 @@ public class SearchForBooksController implements Initializable {
             alert.showAndWait();
         }
     }
-
-    Book extractBookFields() throws NullPointerException {
-        Book book = new Book();
-        book.setIsbn(isbnNumberTextField.getText().trim());
-        book.setTitle(titleTextField.getText().trim());
-        book.setAuthorName(authorTextField.getText().trim());
-        book.setPublisherName(publisherNameTextField.getText().trim());
-        book.setPublicationYear(publicationYearTextField.getText().trim());
-        book.setCategory((String) categoryComboBox.getValue());
-        return book;
-    }
-
-    public void categoryComboBoxClicked(ActionEvent actionEvent) {
-    }
-
-
     public void addToCartButtonHandler(ActionEvent actionEvent) {
-
+        selectionModel = searchTableView.getSelectionModel();
+        Book selectedBook = (Book)selectionModel.getSelectedItem();
+        if(selectedBook!=null){
+            LoginController.getUser().addToCart(selectedBook);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Add To Cart");
+            alert.setContentText("Successfully Added to your Cart ");
+            alert.showAndWait();
+        }
     }
 
     public void modifyButtonHandler(ActionEvent actionEvent) {
@@ -121,16 +132,13 @@ public class SearchForBooksController implements Initializable {
             selectionModel = searchTableView.getSelectionModel();
             Book selectBook = (Book)selectionModel.getSelectedItem();
             DatabaseConnector.getInstance().updateBook(newBook);
+            searchTableView.getItems().remove(selectBook);
+            searchTableView.getItems().add(newBook);
             if (!newBook.validate()) {
                 PublisherOrder publisherOrder = new PublisherOrder();
                 publisherOrder.takeAction(newBook.getIsbn(), newBook.getPublisherName(), newBook.getTitle(), newBook.getThreshold() - newBook.getNumberCopies());
             }
-            List<Book> resultBooks = DatabaseConnector.getInstance().searchForBooks(newBook);
-            for(Book book:resultBooks){
-                searchTableView.getItems().add(new Book(book.getIsbn(), book.getTitle(), book.getAuthorName(),
-                        book.getPublisherName(), book.getPublicationYear(), book.getPrice(), book.getCategory(),
-                        book.getNumberCopies(), book.getThreshold()));
-            }
+
         } catch (RuntimeException exception) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Wrong Input");
@@ -139,6 +147,48 @@ public class SearchForBooksController implements Initializable {
         }
     }
 
+    public void tableViewHandler(MouseEvent mouseEvent) {
+        selectionModel = searchTableView.getSelectionModel();
+        Book selectBook = (Book)selectionModel.getSelectedItem();
+        if(selectBook!=null){
+            updateTextFields(selectBook);
+            addToCartButton.setDisable(false);
+        }else{
+            addToCartButton.setDisable(true);
+        }
+    }    public void goToCartButtonHandler(ActionEvent actionEvent) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("../View/Cart.fxml"));
+        Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        window.setScene(new Scene(root, 1446, 609));
+        window.setResizable(false);
+    }
+
+    public void clearButtonClicked(ActionEvent actionEvent) {
+        addToCartButton.setDisable(true);
+        searchTableView.getItems().clear();
+        isbnNumberTextField.clear();
+        titleTextField.clear();
+        authorTextField.clear();
+        publisherNameTextField.clear();
+        publicationYearTextField.clear();
+        if(LoginController.getUser().isManager()){
+            numOfCopiesTextField.clear();
+            priceTextField.clear();
+            thresholdTextField.clear();
+            modifyButton.setDisable(true);
+        }
+    }
+
+    Book extractBookFields() throws NullPointerException {
+        Book book = new Book();
+        book.setIsbn(isbnNumberTextField.getText().trim());
+        book.setTitle(titleTextField.getText().trim());
+        book.setAuthorName(authorTextField.getText().trim());
+        book.setPublisherName(publisherNameTextField.getText().trim());
+        book.setPublicationYear(publicationYearTextField.getText().trim());
+        book.setCategory(categoryComboBox.getValue());
+        return book;
+    }
 
     Book generateFromLabels() {
         Book book = new Book();
@@ -154,25 +204,19 @@ public class SearchForBooksController implements Initializable {
         return book;
     }
 
-    public void tableViewHandler(MouseEvent mouseEvent) {
-        selectionModel = searchTableView.getSelectionModel();
-        Book selectBook = (Book)selectionModel.getSelectedItem();
-        if(selectBook!=null){
-            updateTextFields(selectBook);
-            addToCartButton.setDisable(false);
-        }else{
-            addToCartButton.setDisable(true);
-        }
-    }
+
     private void updateTextFields(Book book){
         isbnNumberTextField.setText(book.getIsbn());
         titleTextField.setText(book.getTitle());
         authorTextField.setText(book.getAuthorName());
         publicationYearTextField.setText(book.getPublicationYear());
         categoryComboBox.setValue(book.getCategory());
-        numOfCopiesTextField.setText(String.valueOf(book.getNumberCopies()));
         publisherNameTextField.setText(book.getPublisherName());
-        priceTextField.setText(String.valueOf(book.getPrice()));
-        thresholdTextField.setText(String.valueOf(book.getThreshold()));
+        if(LoginController.getUser().isManager()) {
+            numOfCopiesTextField.setText(String.valueOf(book.getNumberCopies()));
+            priceTextField.setText(String.valueOf(book.getPrice()));
+            thresholdTextField.setText(String.valueOf(book.getThreshold()));
+        }
     }
+
 }

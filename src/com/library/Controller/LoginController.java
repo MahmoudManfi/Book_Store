@@ -21,13 +21,13 @@ public class LoginController {
     public Button signInButton;
     public Label label;
     public Button signUpButton;
-    private User user;
+    private static User user;
 
-    public User getUser() {
+    public static User getUser() {
         return user;
     }
 
-    public void clearUser() {
+    public static void clearUser() {
         user = null;
     }
 

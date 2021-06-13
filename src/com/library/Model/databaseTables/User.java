@@ -2,6 +2,7 @@ package com.library.Model.databaseTables;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class User implements Tuple {
@@ -14,16 +15,33 @@ public class User implements Tuple {
     private String phoneNumber;
     private String shippingAddress;
     private String status;
+    List<Book> cartBooks = new ArrayList<>();
+    private int totalBookPrice;
 
-    public List<CartItem> getCartItems() {
-        return cartItems;
+    public int getTotalBookPrice() {
+        return totalBookPrice;
     }
 
-    public void addItem(CartItem cartItem) {
-        this.cartItems.add(cartItem);
+    public void setTotalBookPrice(int totalBookPrice) {
+        this.totalBookPrice = totalBookPrice;
     }
 
-    List<CartItem> cartItems;
+
+    public List<Book> getCart() {
+        return cartBooks;
+    }
+
+    public void addToCart(Book book) {
+        this.cartBooks.add(book);
+        this.totalBookPrice+= book.getPrice();
+    }
+
+    public void removeFromCart(Book book) {
+        this.cartBooks.remove(book);
+        this.totalBookPrice-= book.getPrice();
+    }
+
+
     public void setUserName(String userName) {
         this.userName = userName;
     }
