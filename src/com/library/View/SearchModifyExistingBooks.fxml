@@ -30,7 +30,7 @@
                 </Label>
             </top>
             <right>
-                <TableView fx:id="searchTableView" prefHeight="470.0" prefWidth="1324.0" BorderPane.alignment="CENTER">
+                <TableView fx:id="searchTableView" onMouseClicked="#tableViewHandler" prefHeight="470.0" prefWidth="1324.0" BorderPane.alignment="CENTER">
                     <columns>
                         <TableColumn prefWidth="108.0" text="ISBN Number" />
                         <TableColumn prefWidth="255.0" text="Title" />

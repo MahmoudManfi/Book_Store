@@ -25,6 +25,7 @@ public class WelcomingPageController {
     public Button editPersonalButton;
     @FXML
     public Button logOutButton;
+    public Button reportSalesButton;
     @FXML
     private Button addNewBookButton;
     @FXML
@@ -83,4 +84,6 @@ public class WelcomingPageController {
         window.setResizable(false);
     }
 
+    public void reportSalesButtonHandler(ActionEvent actionEvent) {
+    }
 }

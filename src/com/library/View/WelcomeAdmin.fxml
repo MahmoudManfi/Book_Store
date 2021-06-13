@@ -76,7 +76,7 @@
                               <Font size="30.0" />
                            </font>
                         </Button>
-                        <Button fx:id="logOutButton" minWidth="375.0" mnemonicParsing="false" onAction="#logOutButtonClicked" text="Log Out">
+                        <Button fx:id="reportSalesButton" minWidth="375.0" mnemonicParsing="false" onAction="#reportSalesButtonHandler" text="View Reports On Sales">
                            <font>
                               <Font size="30.0" />
                            </font>
@@ -86,9 +86,21 @@
                         <Insets left="75.0" />
                      </padding>
                   </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0" spacing="100.0">
+                     <children>
+                        <Button fx:id="logOutButton" minWidth="375.0" mnemonicParsing="false" onAction="#logOutButtonClicked" text="Log Out">
+                           <font>
+                              <Font size="30.0" />
+                           </font>
+                        </Button>
+                     </children>
+                     <padding>
+                        <Insets left="305.0" />
+                     </padding>
+                  </HBox>
                     </children>
                <padding>
-                  <Insets bottom="100.0" left="100.0" right="100.0" top="100.0" />
+                  <Insets bottom="100.0" left="100.0" right="100.0" top="75.0" />
                </padding>
                 </VBox>
          </center>

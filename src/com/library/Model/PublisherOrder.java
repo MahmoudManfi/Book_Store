@@ -26,21 +26,18 @@ public class PublisherOrder {
     }
 
 
-    private void showConfirmAlert(String publisherName, String bookTitle, int numberCopies){
+    private void showConfirmAlert(String publisherName, String bookTitle, int numberCopies) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation Order from " + publisherName);
-        alert.setContentText("Book title: " + bookTitle + "\n" + "Quantity: " + numberCopies);
+        alert.setContentText("Book Title : " + bookTitle + "\n" + "Quantity: " + numberCopies);
         Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == ButtonType.OK) {
-            deleteOrder();
-        }
+        deleteOrder();
     }
 
     private void deleteOrder() {
         System.out.println("Delete order after confirmation");
         DatabaseConnector databaseConnector = DatabaseConnector.getInstance();
-        String query = "DELETE FROM book_store.book_order " +
-                "WHERE (number) IN (@@identity)";
+        String query = "DELETE from book_store.book_order ";
         databaseConnector.executeUpdate(query);
     }
 }

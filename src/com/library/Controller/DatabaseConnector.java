@@ -44,7 +44,10 @@ public class DatabaseConnector {
             Connection connection = DriverManager.getConnection(myUrl, "root", password);
             try {
                 Statement statement = connection.createStatement();
+                System.err.println("We are in execute query and going to implement" + query) ;
                 ResultSet resultSet = statement.executeQuery(query);
+                System.out.println("ExecuteQuery done successfully !! ");
+
                 while(resultSet.next()) {
                     Tuple tuple = factoryTable.getTable(tableName);
                     tuple.build(resultSet);
@@ -66,8 +69,9 @@ public class DatabaseConnector {
             Connection connection = DriverManager.getConnection(myUrl, "root", password);
             try {
                 Statement statement = connection.createStatement();
-                statement.executeUpdate(query);
-                System.out.println("Query done successfully !! ");
+                System.err.println("We are in execute update and going to implement" + query) ;
+                int ret = statement.executeUpdate(query);
+                System.out.println("UpdateQuery done successfully!! and reuturned  " + ret );
             }catch (Exception e) {
                 printException(e);
             }
@@ -162,6 +166,7 @@ public class DatabaseConnector {
             updateFields += " threshold = " + book.getThreshold() + " ,";
         }
         if (!updateFields.trim().equals("")) {
+
             updateFields = updateFields.substring(0, updateFields.length() - 2);
             query = "update book set " + updateFields;
             query += " where ISBN_number = " + book.getIsbn() + ";";
