@@ -57,8 +57,11 @@ public class CartController implements Initializable {
         }
     }
 
-    public void checkoutButtonClicked(ActionEvent actionEvent) {
-
+    public void checkoutButtonClicked(ActionEvent actionEvent) throws IOException {
+        Parent  root = FXMLLoader.load(getClass().getResource("../View/CheckOut.fxml"));
+        Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        window.setScene(new Scene(root, 1217, 600));
+        window.setResizable(false);
     }
 
     public void goHomeButtonClicked(ActionEvent actionEvent) throws IOException {

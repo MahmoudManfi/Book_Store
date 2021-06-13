@@ -127,10 +127,10 @@ public class SearchForBooksController implements Initializable {
             newBook = generateFromLabels();
             selectionModel = searchTableView.getSelectionModel();
             Book selectBook = (Book)selectionModel.getSelectedItem();
-            DatabaseConnector.getInstance().updateBook(newBook);
+            int ret = DatabaseConnector.getInstance().updateBook(newBook);
             searchTableView.getItems().remove(selectBook);
             searchTableView.getItems().add(newBook);
-            if (!newBook.validate()) {
+            if (!newBook.validate() && ret > 0) {
                 PublisherOrder publisherOrder = new PublisherOrder();
                 publisherOrder.takeAction(newBook.getIsbn(), newBook.getPublisherName(), newBook.getTitle(), newBook.getThreshold() - newBook.getNumberCopies());
             }

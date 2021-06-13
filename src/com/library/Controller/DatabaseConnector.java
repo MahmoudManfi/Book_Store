@@ -38,9 +38,7 @@ public class DatabaseConnector {
     }
 
     private void doneSuccessfully() {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setContentText("Done Successfully!");
-        alert.showAndWait();
+        System.out.println("Done Successfully!");
     }
 
     public List<Tuple> executeQuery(String query, String tableName) {
@@ -97,9 +95,9 @@ public class DatabaseConnector {
         executeUpdate(query);
     }
 
-    void updateBook(Book book) {
+    int updateBook(Book book) {
         String query = generateUpdateQuery(book);
-        executeUpdate(query);
+        return executeUpdate(query);
     }
 
     public List<List<String>> implementAdvancedSelect(String query, int columns) {
@@ -207,7 +205,7 @@ public class DatabaseConnector {
 
             updateFields = updateFields.substring(0, updateFields.length() - 2);
             query = "update book set " + updateFields;
-            query += " where ISBN_number = " + book.getIsbn() + ";";
+            query += " where ISBN_number = '" + book.getIsbn() + "';";
         }
         System.err.println("update Query: \"" + query + "\";");
 
@@ -219,7 +217,7 @@ public class DatabaseConnector {
         String where = " where";
         String conditions = "";
         if (book.getIsbn() != null && !book.getIsbn().isEmpty()) {
-            conditions += " ISBN_number = " + book.getIsbn() + " &&";
+            conditions += " ISBN_number = '" + book.getIsbn() + "' &&";
         }
         if (book.getTitle() != null && !book.getTitle().trim().equals("")) {
             conditions += " title = \"" + book.getTitle() + "\" &&";
