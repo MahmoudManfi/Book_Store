@@ -1,3 +1,5 @@
+use book_store;
+
 insert into publisher(name, address, phone_number)
 values("dummy publisher" , "address" , "012234234324") ;
 

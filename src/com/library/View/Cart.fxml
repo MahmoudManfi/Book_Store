@@ -32,7 +32,7 @@
          <bottom>
             <HBox prefHeight="100.0" prefWidth="200.0" spacing="30.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button fx:id="goBackButton" minWidth="134.0" mnemonicParsing="false" onAction="#goBackButtonClicked" prefHeight="44.0" prefWidth="134.0" text="Go Back">
+                  <Button fx:id="goHomeButton" minWidth="134.0" mnemonicParsing="false" onAction="#goHomeButtonClicked" prefHeight="44.0" prefWidth="134.0" text="Go Home">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -45,7 +45,11 @@
                         <Insets left="200.0" />
                      </HBox.margin>
                   </Label>
-                  <Label minHeight="44.0" minWidth="250.0" style="-fx-background-color: #FFFFFF;" />
+                  <TextField fx:id="priceLabel" editable="false" minHeight="44.0" minWidth="250.0">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </TextField>
                   <Button fx:id="removeButton" mnemonicParsing="false" onAction="#removeButtonClicked" text="Remove From Cart">
                      <font>
                         <Font size="20.0" />
@@ -72,17 +76,17 @@
             </HBox>
          </bottom>
          <center>
-            <TableView fx:id="cartTbableView" minWidth="1350.0" prefHeight="351.0" prefWidth="1350.0" BorderPane.alignment="CENTER">
+            <TableView fx:id="cartTbableView" minWidth="1350.0" onMouseClicked="#tableViewHandler" prefHeight="351.0" prefWidth="1350.0" BorderPane.alignment="CENTER">
               <columns>
                 <TableColumn prefWidth="108.0" text="ISBN Number" />
-                <TableColumn prefWidth="250.0" text="Title" />
-                  <TableColumn prefWidth="196.0" text="Author Name" />
-                  <TableColumn prefWidth="172.0" text="Publisher Name" />
-                  <TableColumn minWidth="0.0" prefWidth="124.0" text="Publication Year" />
-                  <TableColumn minWidth="0.0" prefWidth="89.0" text="Price" />
-                  <TableColumn prefWidth="111.0" text="Category" />
-                  <TableColumn prefWidth="155.0" text="Number Of Copies" />
-                  <TableColumn prefWidth="144.0" text="Threshold" />
+                <TableColumn prefWidth="296.0" text="Title" />
+                  <TableColumn prefWidth="221.0" text="Author Name" />
+                  <TableColumn prefWidth="232.0" text="Publisher Name" />
+                  <TableColumn minWidth="0.0" prefWidth="171.0" text="Publication Year" />
+                  <TableColumn minWidth="0.0" prefWidth="131.0" text="Price" />
+                  <TableColumn prefWidth="190.0" text="Category" />
+                  <TableColumn minWidth="0.0" prefWidth="0.0" text="Number Of Copies" />
+                  <TableColumn minWidth="0.0" prefWidth="0.0" text="Threshold" />
               </columns>
                <BorderPane.margin>
                   <Insets bottom="50.0" left="50.0" right="50.0" top="15.0" />

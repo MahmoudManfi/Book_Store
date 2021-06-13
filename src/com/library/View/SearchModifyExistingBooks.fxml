@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="652.0" prefWidth="1902.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.library.Controller.SearchForBooksController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="688.0" prefWidth="1904.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.library.Controller.SearchForBooksController">
     <children>
         <VBox prefHeight="200.0" prefWidth="100.0">
             <children>
@@ -78,20 +78,6 @@
                                 </TextField>
                             </children>
                         </HBox>
-                        <HBox spacing="116.0">
-                            <children>
-                                <Label text="Category:" textFill="WHITE">
-                                    <font>
-                                        <Font name="System Bold" size="20.0" />
-                                    </font>
-                                </Label>
-                                <ComboBox fx:id="categoryComboBox" onAction="#categoryComboBoxClicked" prefWidth="250.0">
-                                    <HBox.margin>
-                                        <Insets left="3.0" />
-                                    </HBox.margin>
-                                </ComboBox>
-                            </children>
-                        </HBox>
                         <HBox spacing="55.0">
                             <children>
                                 <Label text="Author Name:" textFill="WHITE">
@@ -136,6 +122,20 @@
                                 <TextField fx:id="priceTextField" prefWidth="250.0" />
                             </children>
                         </HBox>
+                        <HBox spacing="116.0">
+                            <children>
+                                <Label text="Category:" textFill="WHITE">
+                                    <font>
+                                        <Font name="System Bold" size="20.0" />
+                                    </font>
+                                </Label>
+                                <ComboBox fx:id="categoryComboBox" prefWidth="250.0">
+                                    <HBox.margin>
+                                        <Insets left="3.0" />
+                                    </HBox.margin>
+                                </ComboBox>
+                            </children>
+                        </HBox>
                         <HBox spacing="30.0">
                             <children>
                                 <Label text="Number Of Copies:" textFill="WHITE">
@@ -156,9 +156,14 @@
                                 <TextField fx:id="thresholdTextField" prefWidth="250.0" />
                             </children>
                         </HBox>
-                  <HBox spacing="193.0">
+                  <HBox spacing="29.0">
                      <children>
-                        <Button fx:id="modifyButton" minWidth="134.0" mnemonicParsing="false" onAction="#modifyButtonHandler" text="Modify">
+                        <Button fx:id="searchButton" minWidth="134.0" mnemonicParsing="false" onAction="#searchButtonClicked" text="Search">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="clearButton" minWidth="134.0" mnemonicParsing="false" onAction="#clearButtonClicked" text="Clear">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -170,14 +175,19 @@
                         </Button>
                      </children>
                   </HBox>
-                        <HBox spacing="193.0">
+                        <HBox spacing="29.0">
                             <children>
                                 <Button fx:id="goBackButton" minWidth="134.0" mnemonicParsing="false" onAction="#goBackButtonClicked" text="Go Back">
                                     <font>
                                         <Font size="20.0" />
                                     </font>
                                 </Button>
-                        <Button fx:id="searchButton" minWidth="134.0" mnemonicParsing="false" onAction="#searchButtonClicked" text="Search">
+                        <Button fx:id="modifyButton" minWidth="134.0" mnemonicParsing="false" onAction="#modifyButtonHandler" text="Modify">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="goToCartButton" minWidth="134.0" mnemonicParsing="false" onAction="#goToCartButtonHandler" text="Go To Cart">
                            <font>
                               <Font size="20.0" />
                            </font>

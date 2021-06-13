@@ -61,7 +61,7 @@ public class WelcomingPageController {
     public void searchForBookClicked(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("../View/SearchForBooks.fxml"));
         Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        window.setScene(new Scene(root, 1902, 652));
+        window.setScene(new Scene(root, 1900, 596));
         window.setResizable(false);
     }
     public void shoppingCartButtonClicked(ActionEvent actionEvent) throws IOException {
@@ -78,7 +78,8 @@ public class WelcomingPageController {
         window.setResizable(false);
     }
     public void logOutButtonClicked(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("../View/sample.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("../View/login.fxml"));
+        LoginController.clearUser();
         Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         window.setScene(new Scene(root, 1206, 588));
         window.setResizable(false);

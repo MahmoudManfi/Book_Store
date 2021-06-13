@@ -9,6 +9,17 @@ public class CartItem implements Tuple{
     private String ISBNNumber;
     private String userName;
     private Integer numberCopies;
+    
+    public CartItem(){
+
+    }
+
+    public CartItem(Integer number, String ISBNNumber, String userName, Integer numberCopies) {
+        this.number = number;
+        this.ISBNNumber = ISBNNumber;
+        this.userName = userName;
+        this.numberCopies = numberCopies;
+    }
 
     public void setNumber(Integer number) {
         this.number = number;

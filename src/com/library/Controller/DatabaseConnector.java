@@ -92,33 +92,34 @@ public class DatabaseConnector {
         executeUpdate(query);
     }
 
-    List<Book> searchForBooks(Book book) {
+    List<Tuple> searchForBooks(Book book) {
         String query = generateSearchedBooks(book);
-        List<Book> result = new ArrayList<>();
-        try {
-            Connection connection;
-            Statement statement;
-            connection = DriverManager.getConnection(myUrl, "root", password);
-            statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(query);
-            while (resultSet.next()) {
-                Book resultBook = new Book();
-                resultBook.setIsbn(resultSet.getString(1));
-                resultBook.setTitle(resultSet.getString(2));
-                resultBook.setAuthorName(resultSet.getString(3));
-                resultBook.setPublisherName(resultSet.getString(4));
-                resultBook.setPublicationYear(resultSet.getString(5));
-                resultBook.setPrice(resultSet.getInt(6));
-                resultBook.setCategory(resultSet.getString(7));
-                resultBook.setNumberCopies(resultSet.getInt(8));
-                resultBook.setThreshold(resultSet.getInt(9));
-                result.add(resultBook);
-            }
-            statement.close();
-//            connection.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        List<Tuple> result =  executeQuery(query, "book");
+//        List<Book> result = new ArrayList<>();
+//        try {
+//            Connection connection;
+//            Statement statement;
+//            connection = DriverManager.getConnection(myUrl, "root", password);
+//            statement = connection.createStatement();
+//            ResultSet resultSet = statement.executeQuery(query);
+//            while (resultSet.next()) {
+//                Book resultBook = new Book();
+//                resultBook.setIsbn(resultSet.getString(1));
+//                resultBook.setTitle(resultSet.getString(2));
+//                resultBook.setAuthorName(resultSet.getString(3));
+//                resultBook.setPublisherName(resultSet.getString(4));
+//                resultBook.setPublicationYear(resultSet.getString(5));
+//                resultBook.setPrice(resultSet.getInt(6));
+//                resultBook.setCategory(resultSet.getString(7));
+//                resultBook.setNumberCopies(resultSet.getInt(8));
+//                resultBook.setThreshold(resultSet.getInt(9));
+//                result.add(resultBook);
+//            }
+//            statement.close();
+////            connection.close();
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
         return result;
     }
 
